@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    //Input action Map
-    private PlayerInput m_playerInput;
+    //character Controler
+    private CharacterController m_CharacterController;
     //Movespeed
     [SerializeField] private float m_speed = 5f;
 
-    //Make a new instance of the PlayerInputs and Enable it
+    Vector3 m_move;
+
+    //linking the character controler
     private void Awake()
     {
-        m_playerInput = new PlayerInput();
-        m_playerInput.PlayerInputs.Enable();
+        m_CharacterController = GetComponent<CharacterController>();
     }
-
-    //use a vector3 to read the value and link the speed
+    //connecting the keybinds
+    public void OnMovement(InputAction.CallbackContext m_callbackContext)
+    {
+         m_move=  m_callbackContext.ReadValue<Vector3>();
+    }
+    //aplying movement
     private void Update()
     {
-        Vector3 m_playerMoveInPut = m_playerInput.PlayerInputs.Movement.ReadValue<Vector3>();
 
-        transform.Translate(m_playerMoveInPut.x * m_speed * Time.deltaTime, 0 ,m_playerMoveInPut.z * m_speed * Time.deltaTime);
+        m_CharacterController.Move(m_move * m_speed * Time.deltaTime);
     }
 }
