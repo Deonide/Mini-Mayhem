@@ -9,15 +9,18 @@ public class Movement : MonoBehaviour
     private CharacterController m_CharacterController;
     //Movespeed
     [SerializeField] private float m_speed = 5f;
+    //movement
+    private Vector3 m_move;
 
-    Vector3 m_move;
+
+    private Collider m_collider;
 
     //linking the character controler
     private void Awake()
     {
         m_CharacterController = GetComponent<CharacterController>();
     }
-    //connecting the keybinds
+    //connecting the keybinds for movement
     public void OnMovement(InputAction.CallbackContext m_callbackContext)
     {
          m_move=  m_callbackContext.ReadValue<Vector3>();
@@ -25,7 +28,16 @@ public class Movement : MonoBehaviour
     //aplying movement
     private void Update()
     {
-
+        //adding gravity
+        Vector3 m_moveVector = Vector3.zero;
+        if(m_CharacterController.isGrounded == false)
+        {
+            m_moveVector += Physics.gravity;
+        }
+        //moving and gravity
+        m_CharacterController.Move(m_moveVector * Time.deltaTime);
         m_CharacterController.Move(m_move * m_speed * Time.deltaTime);
-    }
+    }   
+
+
 }
