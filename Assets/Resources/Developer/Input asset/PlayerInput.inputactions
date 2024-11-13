@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "51629b1d-d1a8-43c2-aebd-24f249462ba5",
-                    "expectedControlType": "Vector3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -26,9 +26,31 @@
             ],
             "bindings": [
                 {
-                    "name": "3D Vector",
-                    "id": "a5bfada6-3894-419b-9424-c81785335548",
-                    "path": "3DVector",
+                    "name": "",
+                    "id": "935212af-69bb-4cc0-bd2a-c8e9f80aefb0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3deab8eb-98cb-4ea3-95fa-4b15e98a04c4",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "55d1b299-b47b-447c-bd36-983656d0a275",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -37,62 +59,84 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Left",
-                    "id": "58a85142-0988-4877-a058-3a6a277dc223",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Right",
-                    "id": "26191771-1e0e-4c89-976b-38afba34068d",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Forward",
-                    "id": "fad06525-7efa-4d4a-94f8-e33ed5497f76",
+                    "name": "up",
+                    "id": "4ab3a70d-f95e-4ca3-a09b-ee31e71070b6",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Backward",
-                    "id": "b2365e62-8409-4697-9e4d-d2c6cc7b6810",
+                    "name": "down",
+                    "id": "fe127bee-9527-4ca2-b5f2-9711380f77a9",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "3e95ab68-5edb-48ab-8b71-6bc0d1560d16",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6fba38b8-ac37-4fbb-be98-8feae36188da",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "935212af-69bb-4cc0-bd2a-c8e9f80aefb0",
-                    "path": "<Keyboard>/e",
+                    "id": "8ac60580-392b-4e68-8fc7-b25a7710ee57",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Interact",
+                    "groups": "Gamepad",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aedf816c-43e9-4824-8055-4560fe603506",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": []
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": []
+        }
+    ]
 }
