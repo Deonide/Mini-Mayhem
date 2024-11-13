@@ -9,8 +9,6 @@ public class InputManager : MonoBehaviour
     public Movement p_movement;
     // (K) Input Actions Asset
     public PlayerInput m_PlayerInput;
-    // (K) the Read Value of the movement Input
-    public Vector2 i_move;
 
     void Awake()
     {
@@ -39,8 +37,7 @@ public class InputManager : MonoBehaviour
 
     private void OnPlayerMovement(InputAction.CallbackContext context)
     {
-        i_move = context.ReadValue<Vector2>();
-        p_movement.m_move = i_move;
+        p_movement.m_move = context.ReadValue<Vector2>();
     }
 
     private void OnPlayerInteract(InputAction.CallbackContext context)

@@ -24,7 +24,6 @@ public class Movement : MonoBehaviour
     //aplying movement
     private void Update()
     {
-        Debug.Log(m_move);
         //adding gravity
         Vector3 m_moveVector = Vector3.zero;
         if(m_CharacterController.isGrounded == false)
