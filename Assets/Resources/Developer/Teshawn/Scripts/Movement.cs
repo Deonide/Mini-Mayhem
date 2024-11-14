@@ -12,9 +12,6 @@ public class Movement : MonoBehaviour
     //movement
     private Vector3 m_move;
 
-
-    private Collider m_collider;
-
     //linking the character controler
     private void Awake()
     {
