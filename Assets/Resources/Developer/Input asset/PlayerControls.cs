@@ -44,6 +44,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Vote"",
+                    ""type"": ""Button"",
+                    ""id"": ""aac7ad5e-5e63-464c-80fb-7e53a6381724"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -189,6 +198,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Actions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88937fee-d42c-41e1-a242-65e393d81bc7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -222,6 +242,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerMovement_Actions = m_PlayerMovement.FindAction("Actions", throwIfNotFound: true);
+        m_PlayerMovement_Vote = m_PlayerMovement.FindAction("Vote", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -285,12 +306,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Movement;
     private readonly InputAction m_PlayerMovement_Actions;
+    private readonly InputAction m_PlayerMovement_Vote;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerMovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputAction @Actions => m_Wrapper.m_PlayerMovement_Actions;
+        public InputAction @Vote => m_Wrapper.m_PlayerMovement_Vote;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -306,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Actions.started += instance.OnActions;
             @Actions.performed += instance.OnActions;
             @Actions.canceled += instance.OnActions;
+            @Vote.started += instance.OnVote;
+            @Vote.performed += instance.OnVote;
+            @Vote.canceled += instance.OnVote;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -316,6 +342,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Actions.started -= instance.OnActions;
             @Actions.performed -= instance.OnActions;
             @Actions.canceled -= instance.OnActions;
+            @Vote.started -= instance.OnVote;
+            @Vote.performed -= instance.OnVote;
+            @Vote.canceled -= instance.OnVote;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -355,5 +384,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnActions(InputAction.CallbackContext context);
+        void OnVote(InputAction.CallbackContext context);
     }
 }

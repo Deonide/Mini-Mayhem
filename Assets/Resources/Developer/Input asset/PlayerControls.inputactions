@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Vote",
+                    "type": "Button",
+                    "id": "aac7ad5e-5e63-464c-80fb-7e53a6381724",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -165,6 +174,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Actions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88937fee-d42c-41e1-a242-65e393d81bc7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vote",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

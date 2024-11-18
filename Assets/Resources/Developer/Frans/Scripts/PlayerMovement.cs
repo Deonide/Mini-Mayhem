@@ -16,6 +16,10 @@ public class PlayerScript : MonoBehaviour
     private bool groundedPlayer = false;
     private bool jumped = false;
 
+
+    private bool m_hasVoted,m_CanVote = false;
+    private int m_voteIndex;
+
     //Rigidbody
     Rigidbody rb;
 
@@ -67,5 +71,30 @@ public class PlayerScript : MonoBehaviour
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
         Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
+    }
+
+
+    private void Update()
+    {
+        if(m_hasVoted)
+        {
+            m_hasVoted = false;
+        }
+    }
+
+    public void OnInteracte(InputAction.CallbackContext context)
+    {
+        if (m_CanVote)
+        {
+            m_hasVoted = true;
+            m_CanVote = false;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            m_CanVote = true;
+        }
     }
 }
