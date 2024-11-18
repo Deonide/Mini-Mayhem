@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,19 +9,35 @@ public class Portals : MonoBehaviour
 {
     public GameModes m_gameModes;
 
+    public int m_AmountOfVotes;
+
+    public PlayerScript[] m_PlayerControls;
+    public int playervote = 0;
+
+
+
+    private void Start()
+    {
+        m_PlayerControls = FindObjectsOfType<PlayerScript>();
+        playervote = 0;
+    }
+
     private void Update()
     {
-        if(m_gameModes == GameModes.Combat)
+        if (m_gameModes == GameModes.Combat)
         {
-            Debug.Log("combat");
+
         }
+
         if (m_gameModes == GameModes.Survival)
         {
-            Debug.Log("Survival");
+
         }
+
         if (m_gameModes == GameModes.Quick)
         {
-            Debug.Log("QTE");
+
         }
-    }
+    } 
+  
 }

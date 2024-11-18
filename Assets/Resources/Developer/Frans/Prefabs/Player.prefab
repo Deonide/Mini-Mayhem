@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6298267588266872898}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   playerSpeed: 2
   gravityValue: 2
   jumpHeight: 1
+  m_voteCount: 1
 --- !u!114 &6298267588266872898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +198,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0b21a6e9-4739-4fc8-aa10-a5364d06c715
     m_ActionName: PlayerMovement/Actions[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aac7ad5e-5e63-464c-80fb-7e53a6381724
+    m_ActionName: PlayerMovement/Vote[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: PlayerMovement

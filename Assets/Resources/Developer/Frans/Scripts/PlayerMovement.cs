@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 
 public class PlayerScript : MonoBehaviour
@@ -16,9 +13,9 @@ public class PlayerScript : MonoBehaviour
     private bool groundedPlayer = false;
     private bool jumped = false;
 
-
-    private bool m_hasVoted,m_CanVote = false;
-    private int m_voteIndex;
+    [SerializeField] public int m_voteCount = 1;
+    private bool m_canVote = false;
+    [SerializeField] private GameObject m_portals;
 
     //Rigidbody
     Rigidbody rb;
@@ -26,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     private Vector2 movementInput = Vector2.zero;
     void Start()
     {
+
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -66,6 +64,8 @@ public class PlayerScript : MonoBehaviour
     }*/
     #endregion
 
+   
+
     private void FixedUpdate()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
@@ -73,28 +73,34 @@ public class PlayerScript : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-
-    private void Update()
-    {
-        if(m_hasVoted)
-        {
-            m_hasVoted = false;
-        }
-    }
-
-    public void OnInteracte(InputAction.CallbackContext context)
-    {
-        if (m_CanVote)
-        {
-            m_hasVoted = true;
-            m_CanVote = false;
-        }
-    }
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.CompareTag("Portal"))
         {
-            m_CanVote = true;
+            m_canVote = true;
+            if(m_portals == null)
+            {
+                m_portals = collision.gameObject;
+            }
+            
         }
+        else
+        {
+            m_portals = null;
+            m_canVote = false;
+        }
+    }
+    public void OnInteracte(InputAction.CallbackContext context)
+    {
+        if (context.performed && m_voteCount == 1 && m_canVote)
+        {
+            if (m_portals != null)
+            {
+                m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+            }
+            m_voteCount--;
+        }
+
     }
 }
