@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using Unity.VisualScripting;
 
@@ -35,4 +36,5 @@ public class Movement : MonoBehaviour
             m_rb.velocity = new Vector3(m_data.x * m_speed * Time.deltaTime , 0, m_data.y * m_speed * Time.deltaTime);
         }
     }
+
 }
