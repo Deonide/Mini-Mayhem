@@ -8,7 +8,7 @@ public enum GameModes { Combat,Survival,Quick}
 public class Portals : MonoBehaviour
 {
     public GameModes m_gameModes;
-
+    
     public int m_AmountOfVotes = 0;
 
     private void Start()

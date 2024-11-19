@@ -1,22 +1,28 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
-public class PlayerScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    //Variables voor de player movement/jump stats
-    [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float gravityValue = 2f;
-    [SerializeField] private float jumpHeight = 1.0f;
+    [SerializeField]
+    private float playerSpeed = 2.0f;
 
-    private Vector3 playerVelocity;
-    private bool groundedPlayer = false;
-    private bool jumped = false;
+    [SerializeField] 
+    private int m_voteCount = 1;
+
+    [CanBeNull]
+    [SerializeField] 
+    private GameObject m_portals, m_bomb, m_bombSpawnPoint;
+
 
     //variablen voor het stemmen op je gameMode
     [SerializeField] private int m_voteCount = 2;
     [SerializeField] private bool m_canVote = false;
     [SerializeField] private GameObject m_portals;
+
 
     //Rigidbody
     Rigidbody rb;
@@ -24,10 +30,10 @@ public class PlayerScript : MonoBehaviour
     private Vector2 movementInput = Vector2.zero;
     void Start()
     {
-
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -35,7 +41,96 @@ public class PlayerScript : MonoBehaviour
             movementInput = context.ReadValue<Vector2>();
         }
     }
+
+    public void OnAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            int index = scene.buildIndex;
+
+            switch (index)
+            {
+                case 0:
+                    Vote();
+                    break;
+                case 1:
+                    BomberDuck();
+                    break;
+                case 2:
+                    BumperDucks();
+                    break;
+                case 3:
+                    DuckLordSays();
+                    break;
+                case 4:
+                    QuickDucks();
+                    break;
+                case 5:
+                    FallingPlatforms();
+                    break;
+                case 6:
+                    SinkingPlatforms();
+                    break;
+            }
+        }
+    }
+    #endregion
+    #region Actions
+    private void Vote()
+    {
+        if (m_portals != null && m_voteCount == 1 && m_canVote)
+        {
+            m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+        }
+        m_voteCount--;
+    }
+
+    private void BomberDuck()
+    {
+        Instantiate(m_bomb, m_bombSpawnPoint.transform.position, Quaternion.identity);
+    }
+
+    private void BumperDucks()
+    {
+
+    }
+
+    private void DuckLordSays()
+    {
+
+    }
+    
+    private void QuickDucks()
+    {
+
+    }
+
+    private void FallingPlatforms()
+    {
+
+    }
+
+    private void SinkingPlatforms()
+    {
+
+    }
+    #endregion
+
     #region Jump
+    //Variables voor de player movement/jump stats
+    /*    
+
+        [SerializeField] 
+        private float gravityValue = 2f;
+
+        [SerializeField] 
+        private float jumpHeight = 1.0f;*/
+
+    /*    private Vector3 playerVelocity;
+    private bool groundedPlayer = false;
+    private bool jumped = false;*/
+
     /*    public void OnJump(InputAction.CallbackContext context)
         {
             if (context.performed && groundedPlayer)
@@ -65,8 +160,6 @@ public class PlayerScript : MonoBehaviour
     }*/
     #endregion
 
-   
-
     private void FixedUpdate()
     {
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
@@ -83,6 +176,7 @@ public class PlayerScript : MonoBehaviour
             {
                 m_portals = collision.gameObject;
             }  
+
         }
         else
         {
@@ -102,4 +196,3 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-}
