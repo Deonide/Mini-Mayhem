@@ -11,14 +11,14 @@ public class Portals : MonoBehaviour
 
     public int m_AmountOfVotes;
 
-    public PlayerScript[] m_PlayerControls;
+    public PlayerMovement[] m_PlayerControls;
     public int playervote = 0;
 
 
 
     private void Start()
     {
-        m_PlayerControls = FindObjectsOfType<PlayerScript>();
+        m_PlayerControls = FindObjectsOfType<PlayerMovement>();
         playervote = 0;
     }
 
