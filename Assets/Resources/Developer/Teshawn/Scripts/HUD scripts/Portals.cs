@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public enum GameModes { Combat,Survival,Quick}
 public class Portals : MonoBehaviour
 {
-    public GameModes m_gameModes;
+    //private GameModes m_gameModes;
+    private List<GameModes> m_gameModes = new List<GameModes>();
+
 
     public int m_AmountOfVotes;
 
@@ -24,20 +26,7 @@ public class Portals : MonoBehaviour
 
     private void Update()
     {
-        if (m_gameModes == GameModes.Combat)
-        {
-
-        }
-
-        if (m_gameModes == GameModes.Survival)
-        {
-
-        }
-
-        if (m_gameModes == GameModes.Quick)
-        {
-
-        }
+       
     } 
   
 }
