@@ -845,9 +845,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-
   activeInputHandler: 2
-
   windowsGamepadBackendHint: 0
   cloudProjectId: 525dda54-1ea9-40de-b6b2-a7355a15d0a8
   framebufferDepthMemorylessMode: 0
@@ -855,7 +853,7 @@ PlayerSettings:
   projectName: Mini Mayhem
   organizationId: franserhart12
   cloudEnabled: 0
-  legacyClampBlendShapeWeights: 0
+  legacyClampBlendShapeWeights: 1
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0
   virtualTexturingSupportEnabled: 0

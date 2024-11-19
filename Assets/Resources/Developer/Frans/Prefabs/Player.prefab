@@ -152,7 +152,9 @@ MonoBehaviour:
   playerSpeed: 2
   gravityValue: 2
   jumpHeight: 1
-  m_voteCount: 1
+  m_voteCount: 2
+  m_canVote: 0
+  m_portals: {fileID: 0}
 --- !u!114 &6298267588266872898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +201,19 @@ MonoBehaviour:
     m_ActionId: 0b21a6e9-4739-4fc8-aa10-a5364d06c715
     m_ActionName: PlayerMovement/Actions[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3117385501086629153}
+        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
+        m_MethodName: OnInteracte
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: aac7ad5e-5e63-464c-80fb-7e53a6381724
     m_ActionName: PlayerMovement/Vote[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 1

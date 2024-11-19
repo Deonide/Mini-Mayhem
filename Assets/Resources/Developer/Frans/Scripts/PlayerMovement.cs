@@ -13,8 +13,9 @@ public class PlayerScript : MonoBehaviour
     private bool groundedPlayer = false;
     private bool jumped = false;
 
-    [SerializeField] public int m_voteCount = 1;
-    private bool m_canVote = false;
+    //variablen voor het stemmen op je gameMode
+    [SerializeField] private int m_voteCount = 2;
+    [SerializeField] private bool m_canVote = false;
     [SerializeField] private GameObject m_portals;
 
     //Rigidbody
@@ -75,15 +76,13 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
             if(m_portals == null)
             {
                 m_portals = collision.gameObject;
-            }
-            
+            }  
         }
         else
         {
@@ -93,7 +92,7 @@ public class PlayerScript : MonoBehaviour
     }
     public void OnInteracte(InputAction.CallbackContext context)
     {
-        if (context.performed && m_voteCount == 1 && m_canVote)
+        if (context.performed && m_voteCount != 0 && m_canVote)
         {
             if (m_portals != null)
             {
