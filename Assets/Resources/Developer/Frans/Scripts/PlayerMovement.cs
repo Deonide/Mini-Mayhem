@@ -46,25 +46,25 @@ public class PlayerMovement : MonoBehaviour
 
             switch (index)
             {
-                case 0:
+                case 1:
                     Vote();
                     break;
-                case 1:
+                case 2:
                     BomberDuck();
                     break;
-                case 2:
+                case 3:
                     BumperDucks();
                     break;
-                case 3:
+                case 4:
                     DuckLordSays();
                     break;
-                case 4:
+                case 5:
                     QuickDucks();
                     break;
-                case 5:
+                case 6:
                     FallingPlatforms();
                     break;
-                case 6:
+                case 7:
                     SinkingPlatforms();
                     break;
             }
