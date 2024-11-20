@@ -174,9 +174,17 @@ PrefabInstance:
       propertyPath: m_Portals
       value: 
       objectReference: {fileID: 1285372159}
+    - target: {fileID: 3117385501086629153, guid: f02a053df472aa84bbaad11d3005d5af, type: 3}
+      propertyPath: m_voteCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5062600773691720638, guid: f02a053df472aa84bbaad11d3005d5af, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062600773691720638, guid: f02a053df472aa84bbaad11d3005d5af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6298267588266872898, guid: f02a053df472aa84bbaad11d3005d5af, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -343,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameModes: 1
-  m_PlayerControls: []
+  m_AmountOfVotes: 0
 --- !u!1 &1132120949
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameModes: 0
-  m_PlayerControls: []
+  m_AmountOfVotes: 0
 --- !u!64 &1285372160
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -801,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameModes: 2
-  m_PlayerControls: []
+  m_AmountOfVotes: 0
 --- !u!64 &1915999191
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -905,7 +913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1950729038
 Transform:
   m_ObjectHideFlags: 0
@@ -933,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_MaxPlayerCount: -1
   m_AllowJoining: 1
   m_JoinBehavior: 0
@@ -994,6 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926a0211ca7cecd42825ca21bfc4a29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ports: []
 --- !u!4 &2129440194
 Transform:
   m_ObjectHideFlags: 0

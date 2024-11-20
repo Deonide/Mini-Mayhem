@@ -238,6 +238,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3117385501086629153}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnAction
+
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

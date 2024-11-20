@@ -17,7 +17,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] 
     private GameObject m_portals, m_bomb, m_bombSpawnPoint;
 
-    private bool m_canVote = false;
+
+    //variablen voor het stemmen op je gameMode
+    [SerializeField] private int m_voteCount = 2;
+    [SerializeField] private bool m_canVote = false;
+    [SerializeField] private GameObject m_portals;
+
 
     //Rigidbody
     Rigidbody rb;
@@ -170,7 +175,8 @@ public class PlayerMovement : MonoBehaviour
             if(m_portals == null)
             {
                 m_portals = collision.gameObject;
-            }
+            }  
+
         }
         else
         {
@@ -178,4 +184,15 @@ public class PlayerMovement : MonoBehaviour
             m_canVote = false;
         }
     }
-}
+    public void OnInteracte(InputAction.CallbackContext context)
+    {
+        if (context.performed && m_voteCount != 0 && m_canVote)
+        {
+            if (m_portals != null)
+            {
+                m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+            }
+            m_voteCount--;
+        }
+
+    }
