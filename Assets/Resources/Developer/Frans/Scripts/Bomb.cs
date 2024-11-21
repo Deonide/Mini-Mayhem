@@ -5,12 +5,11 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     private PlayerMovement m_playerMovement;
-
-
+    [SerializeField]
+    private LayerMask m_layerMask;
     private void Start()
     {
         Destroy(gameObject, 3f);
-        m_playerMovement = FindAnyObjectByType<PlayerMovement>();
     }
 
     private void OnDestroy()
@@ -20,10 +19,18 @@ public class Bomb : MonoBehaviour
 
     private void ExplosionDamage(Vector3 center, float radius)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        foreach (var hitCollider in hitColliders)
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius, m_layerMask);
+        foreach (Collider collider in hitColliders)
         {
-            hitCollider.SendMessage("AddDamage");
+            m_playerMovement = collider.gameObject.GetComponent<PlayerMovement>();
+            if (m_playerMovement != null)
+            {
+                m_playerMovement.m_health--;
+                if(m_playerMovement.m_health == 0)
+                {
+                    Destroy(collider.gameObject);
+                }
+            }
         }
     }
 }

@@ -10,19 +10,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float playerSpeed = 2.0f;
 
-    [SerializeField] 
+    //variablen voor het stemmen op je gameMode
+    [SerializeField]
+    private bool m_canVote = false;
+
+    [SerializeField]
     private int m_voteCount = 1;
 
     [CanBeNull]
-    [SerializeField] 
+    [SerializeField]
     private GameObject m_portals, m_bomb, m_bombSpawnPoint;
 
-
-    //variablen voor het stemmen op je gameMode
-    [SerializeField] private int m_voteCount = 2;
-    [SerializeField] private bool m_canVote = false;
-    [SerializeField] private GameObject m_portals;
-
+    public int m_health = 1;
+    private int m_maxBombs = 1, m_bombsRemaining = 1;
+    private float m_bombTimer , m_maxBombTimer = 2f;
 
     //Rigidbody
     Rigidbody rb;
@@ -31,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        m_bombsRemaining = m_maxBombs;
+        m_bombTimer = m_maxBombTimer;
     }
 
     #region Input
@@ -46,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            if(m_bombsRemaining != 0)
+            {
+                Instantiate(m_bomb, m_bombSpawnPoint.transform.position, Quaternion.identity);
+                m_bombsRemaining--;
+            }
+
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
 
@@ -88,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void BomberDuck()
     {
-        Instantiate(m_bomb, m_bombSpawnPoint.transform.position, Quaternion.identity);
+        
     }
 
     private void BumperDucks()
@@ -100,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
-    
+
     private void QuickDucks()
     {
 
@@ -165,6 +174,16 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
         Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
+
+        if (m_bombsRemaining < m_maxBombs)
+        {
+            m_bombTimer -= Time.fixedDeltaTime;
+            if(m_bombTimer <= 0)
+            {
+                m_bombTimer = m_maxBombTimer;
+                m_bombsRemaining++;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -172,10 +191,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
-            if(m_portals == null)
+            if (m_portals == null)
             {
                 m_portals = collision.gameObject;
-            }  
+            }
 
         }
         else
@@ -184,15 +203,4 @@ public class PlayerMovement : MonoBehaviour
             m_canVote = false;
         }
     }
-    public void OnInteracte(InputAction.CallbackContext context)
-    {
-        if (context.performed && m_voteCount != 0 && m_canVote)
-        {
-            if (m_portals != null)
-            {
-                m_portals.GetComponent<Portals>().m_AmountOfVotes++;
-            }
-            m_voteCount--;
-        }
-
-    }
+}
