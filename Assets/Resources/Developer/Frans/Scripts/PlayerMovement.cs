@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //variablen voor het stemmen op je gameMode
-    [SerializeField] private int m_voteCount = 2;
     [SerializeField] private bool m_canVote = false;
-    [SerializeField] private GameObject m_portals;
 
 
     //Rigidbody
