@@ -10,11 +10,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float playerSpeed = 2.0f;
 
-    [SerializeField] 
+    [SerializeField]
     private int m_voteCount = 1;
 
     [CanBeNull]
-    [SerializeField] 
+    [SerializeField]
     private GameObject m_portals, m_bomb, m_bombSpawnPoint;
 
 
@@ -98,10 +98,10 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
-    
+
     private void QuickDucks()
     {
-
+        
     }
 
     private void FallingPlatforms()
@@ -170,10 +170,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
-            if(m_portals == null)
+            if (m_portals == null)
             {
                 m_portals = collision.gameObject;
-            }  
+            }
 
         }
         else
@@ -182,15 +182,4 @@ public class PlayerMovement : MonoBehaviour
             m_canVote = false;
         }
     }
-    public void OnInteracte(InputAction.CallbackContext context)
-    {
-        if (context.performed && m_voteCount != 0 && m_canVote)
-        {
-            if (m_portals != null)
-            {
-                m_portals.GetComponent<Portals>().m_AmountOfVotes++;
-            }
-            m_voteCount--;
-        }
-
-    }
+}
