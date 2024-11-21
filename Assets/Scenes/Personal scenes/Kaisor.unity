@@ -166,6 +166,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385210fd6a00ca44285b85ae0a48c921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p_Movement: {fileID: 0}
+  pauseBetweenQTE: 2
+  timeToPress: 2
+  timeIncrement: 1.05
+  pressWindowActive: 0
+  QTE_SequenceActive: 0
+  QTE_GameStart: 0
+  QTE_Cycle: 0
+  QTE_Correct_Input: 0
+  ifOnePlayerLeft: 0
+  playerChosenInput: 0
+  playerAnswerCorrect: 0
 --- !u!1 &327503673
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +190,6 @@ GameObject:
   - component: {fileID: 327503676}
   - component: {fileID: 327503675}
   - component: {fileID: 327503678}
-  - component: {fileID: 327503679}
   - component: {fileID: 327503680}
   m_Layer: 0
   m_Name: PortalOne
@@ -279,18 +290,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &327503679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327503673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f789e1b073a6ea14281b56c7daf340b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &327503680
 MeshCollider:
   m_ObjectHideFlags: 0
