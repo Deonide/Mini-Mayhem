@@ -1,34 +1,41 @@
 using JetBrains.Annotations;
+using MiniGames.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Variables
+    #region Universal Variables
     [SerializeField]
     private float playerSpeed = 2.0f;
 
-    //variablen voor het stemmen op je gameMode
-    [SerializeField]
-    private bool m_canVote = false;
-
-    [SerializeField]
-    private int m_voteCount = 1;
-
-    [CanBeNull]
-    [SerializeField]
-    private GameObject m_portals, m_bomb, m_bombSpawnPoint;
-
-    public int m_health = 1;
-    private int m_maxBombs = 1, m_bombsRemaining = 1;
-    private float m_bombTimer , m_maxBombTimer = 2f;
-
     //Rigidbody
     Rigidbody rb;
-
     private Vector2 movementInput = Vector2.zero;
+    public int m_health = 1;
+    #endregion
+    #region Voting
+    [CanBeNull]
+    [SerializeField]
+    private GameObject m_portals;
+
+    //variablen voor het stemmen op je gameMode
+    private bool m_canVote = false;
+    private int m_voteCount = 1;
+    #endregion
+    #region Bomberduck
+    [CanBeNull]
+    [SerializeField]
+    private GameObject m_bomb, m_bombSpawnPoint;
+
+    private int m_maxBombs = 1, m_bombsRemaining = 1;
+    private float m_bombTimer, m_maxBombTimer = 2f;
+    #endregion
+    #endregion
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -49,43 +56,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            if(m_bombsRemaining != 0)
-            {
-                Instantiate(m_bomb, m_bombSpawnPoint.transform.position, Quaternion.identity);
-                m_bombsRemaining--;
-            }
-
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
-
-            switch (index)
+            if (index == 1)
             {
-                case 1:
-                    Vote();
-                    break;
-                case 2:
-                    BomberDuck();
-                    break;
-                case 3:
-                    BumperDucks();
-                    break;
-                case 4:
-                    DuckLordSays();
-                    break;
-                case 5:
-                    QuickDucks();
-                    break;
-                case 6:
-                    FallingPlatforms();
-                    break;
-                case 7:
-                    SinkingPlatforms();
-                    break;
+                Vote();
+            }
+
+            if (index == 2)
+            {
+                /*                if ()*/
+                SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
             }
         }
     }
     #endregion
-    #region Actions
+
     private void Vote()
     {
         if (m_portals != null && m_voteCount == 1 && m_canVote)
@@ -94,37 +80,6 @@ public class PlayerMovement : MonoBehaviour
         }
         m_voteCount--;
     }
-
-    private void BomberDuck()
-    {
-        
-    }
-
-    private void BumperDucks()
-    {
-
-    }
-
-    private void DuckLordSays()
-    {
-
-    }
-
-    private void QuickDucks()
-    {
-
-    }
-
-    private void FallingPlatforms()
-    {
-
-    }
-
-    private void SinkingPlatforms()
-    {
-
-    }
-    #endregion
 
     #region Jump
     //Variables voor de player movement/jump stats
