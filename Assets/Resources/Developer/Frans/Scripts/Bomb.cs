@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    private PlayerMovement m_playerMovement;
     [SerializeField]
     private LayerMask m_layerMask;
+
+    [SerializeField]
+    private GameObject m_particles;
+
+    private PlayerMovement m_playerMovement;
     private void Start()
     {
         Destroy(gameObject, 3f);
@@ -19,17 +23,14 @@ public class Bomb : MonoBehaviour
 
     private void ExplosionDamage(Vector3 center, float radius)
     {
+        Instantiate(m_particles, transform.position, Quaternion.identity);
         Collider[] hitColliders = Physics.OverlapSphere(center, radius, m_layerMask);
         foreach (Collider collider in hitColliders)
         {
             m_playerMovement = collider.gameObject.GetComponent<PlayerMovement>();
             if (m_playerMovement != null)
             {
-                m_playerMovement.m_health--;
-                if(m_playerMovement.m_health == 0)
-                {
-                    Destroy(collider.gameObject);
-                }
+                m_playerMovement.TakeDamage();
             }
         }
     }
