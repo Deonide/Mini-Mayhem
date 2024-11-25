@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     //Rigidbody
     Rigidbody rb;
     private Vector2 movementInput = Vector2.zero;
-    public int m_health = 1;
+    private int m_health = 1;
     #endregion
     #region Voting
     [CanBeNull]
@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
             if (index == 1)
@@ -156,6 +157,15 @@ public class PlayerMovement : MonoBehaviour
         {
             m_portals = null;
             m_canVote = false;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        m_health--;
+        if (m_health == 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
