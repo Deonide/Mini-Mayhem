@@ -11,6 +11,7 @@ namespace MiniGames
         {
             public static void SpawningBombs(GameObject bomb, Vector3 bombSpawnPoint)
             {
+                //Spawned de bomb in.
                 GameObject.Instantiate(bomb, bombSpawnPoint, Quaternion.identity);
             }
         }
@@ -19,7 +20,8 @@ namespace MiniGames
         {
             public static void BumpingDucks(float speed, float bounce)
             {
-
+                //Als de spelers tegen elkaar aan bouncen dan bouncen ze van elkaar af.
+/*              gameObject.*/
             }
         }
     }

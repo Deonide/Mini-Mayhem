@@ -21,9 +21,10 @@ public class Spawnerscript : MonoBehaviour
         m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
     }
 
-
     public void SwitchPrefab()
     {
+        //Elke keer dat de er een speler inspawned telt de index 1tje op en word de prefab die de input manager moet spawnen verandert.
+        //De max aantal spelers word bepaald in de inputmanager
         if (m_playerInputManager.maxPlayerCount == 2)
         {
             if (m_index != 1)
@@ -44,6 +45,7 @@ public class Spawnerscript : MonoBehaviour
 
     public void AssignSpawner()
     {
+        //Hetzelfde gebeurt maar dan voor de spawnlocatie.
         for (int i = 0; i < 4; i++)
         {
             m_playerCharacters[i].transform.position = new Vector3(m_playerSpawners[i].transform.position.x, m_playerSpawners[i].transform.position.y, m_playerSpawners[i].transform.position.z);
