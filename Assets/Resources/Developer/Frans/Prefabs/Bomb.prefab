@@ -121,3 +121,4 @@ MonoBehaviour:
   m_layerMask:
     serializedVersion: 2
     m_Bits: 128
+  m_particles: {fileID: 3054937244222282049, guid: 152ce61223153d04b8c12ab2ac326888, type: 3}
