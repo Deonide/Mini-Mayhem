@@ -49,7 +49,6 @@ public class Spawnerscript : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             m_playerCharacters[i].transform.position = new Vector3(m_playerSpawners[i].transform.position.x, m_playerSpawners[i].transform.position.y, m_playerSpawners[i].transform.position.z);
-            Debug.Log(i);
         }
     }
 
