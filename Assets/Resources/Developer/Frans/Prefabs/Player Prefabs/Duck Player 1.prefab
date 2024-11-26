@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1240264706912127772}
   - component: {fileID: 3245746743428794309}
   - component: {fileID: 7015231003933162204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leg left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2281545164045965853}
   - component: {fileID: 5496549695479289529}
   - component: {fileID: 5470550049259906271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eye right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 9166864587220374164}
   - component: {fileID: 6338689158278585882}
   - component: {fileID: 9119943917407501272}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Feather bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2873927800322338390}
   - component: {fileID: 3581861350101008522}
   - component: {fileID: 5030527078478721058}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4473161950159974680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BombSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 7968832022020493817}
   - component: {fileID: 6886327650050582562}
   - component: {fileID: 3828571723043977102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Leg right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,9 +459,9 @@ GameObject:
   - component: {fileID: 6616064203681802054}
   - component: {fileID: 4595343779447116715}
   - component: {fileID: 2767829078315648509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Duck Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 4064376734825594542}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.958563, y: 8.39053, z: 40.03064}
+  m_LocalPosition: {x: 29.958563, y: 1, z: 40.03064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -502,10 +502,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.950603
-  m_Height: 8.288744
+  m_Radius: 2.9016328
+  m_Height: 7.943351
   m_Direction: 1
-  m_Center: {x: 0.55856395, y: 3.9883308, z: -0.26935816}
+  m_Center: {x: 0.55856395, y: 3.8156343, z: -0.22038794}
 --- !u!54 &6616064203681802054
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -546,6 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 20
+  m_health: 3
   m_portals: {fileID: 0}
   m_bomb: {fileID: 8035583652281843268, guid: 8f1ca2a27a121164a91c635c8ba3c44c, type: 3}
   m_bombSpawnPoint: {fileID: 2121462848331935438}
@@ -626,7 +627,7 @@ GameObject:
   - component: {fileID: 4293125409133401224}
   - component: {fileID: 8833093630038145951}
   - component: {fileID: 5986985445270086302}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Feather top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +710,7 @@ GameObject:
   - component: {fileID: 3920532421902262969}
   - component: {fileID: 5335890465985786307}
   - component: {fileID: 6487812801715833140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eye left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8722424954659015139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +832,7 @@ GameObject:
   - component: {fileID: 633772969540478280}
   - component: {fileID: 4079595627204118300}
   - component: {fileID: 2345750555189183430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Beak
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,7 +3,7 @@ using MiniGames.Combat;
 using MiniGames.QuickTimeEvent;
 using System.Numerics;
 using System.Security.Cryptography;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -20,7 +20,9 @@ public class PlayerMovement : MonoBehaviour
     //Rigidbody
     Rigidbody rb;
     private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
-    private int m_health = 1;
+
+    [SerializeField]
+    private int m_health = 3;
     #endregion
     #region Voting
     [CanBeNull]
@@ -77,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         //Wanener deze actionmap word uitgevoerd dan gebeurt de bij behorende actie
         if (context.performed)
         {
+            Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
             if (index == 1)
             {
@@ -188,10 +191,22 @@ public class PlayerMovement : MonoBehaviour
     {
         m_health--;
 
+        StartCoroutine(HealthFlash());
         //Als de speler geen health meer over heeft gaat die dood.
         if (m_health == 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator HealthFlash()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            gameObject.GetComponentInChildren<Material>().color = new Color(169, 124, 93);
+            yield return new WaitForSeconds(0.1f);
+            gameObject.GetComponentInChildren<Material>().color = new Color(255, 255, 255);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
