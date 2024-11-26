@@ -13,31 +13,28 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     #region Universal Variables
-    [SerializeField] public int whichPlayer = 0;
-    private float playerSpeed = 2.0f;
-    public Scene scene;
 
+
+    [SerializeField] 
+    public int whichPlayer = 0;
     [SerializeField]
     private GameObject m_DuckChild;
     
     [SerializeField]
     private int m_health = 3;
 
+    private float playerSpeed = 20f;
+    public Scene scene;
+
     //Rigidbody
     Rigidbody rb;
 
     private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
-
-    [SerializeField]
-    private int m_health = 3;
-
-
     #endregion
     #region Voting
     [CanBeNull]
     [SerializeField]
     private GameObject m_portals;
-    private Voting m_voting;
 
     //variablen voor het stemmen op je gameMode
     private bool m_canVote = false;
@@ -91,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
             if (index == 1)
@@ -116,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
-           
         }
         m_voteCount--;
     }
@@ -192,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+
         else
         {
             m_portals = null;
