@@ -13,28 +13,34 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     #region Universal Variables
-    [SerializeField] public int whichPlayer = 0;
-    private float playerSpeed = 2.0f;
+
+
+    [SerializeField] 
+    public int whichPlayer = 0;
+    [SerializeField]
+    private GameObject m_DuckChild;
+    
+    [SerializeField]
+    private int m_health = 3;
+
+    private float playerSpeed = 20f;
     public Scene scene;
 
     //Rigidbody
     Rigidbody rb;
+
     private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
-
-    [SerializeField]
-    private int m_health = 3;
-
     #endregion
     #region Voting
     [CanBeNull]
     [SerializeField]
     private GameObject m_portals;
-    private Voting m_voting;
 
     //variablen voor het stemmen op je gameMode
     private bool m_canVote = false;
     [SerializeField]
     private int m_voteCount = 1;
+    private Voting m_voting;
     #endregion
     #region Bomberduck
     [CanBeNull]
@@ -51,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         scene = SceneManager.GetActiveScene();
         m_voting = FindObjectOfType<Voting>();
         rb = gameObject.GetComponent<Rigidbody>();
-        
+
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
     }
@@ -82,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
+            SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
             if (index == 1)
@@ -100,12 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Vote()
     {
+        //Als de speler colission heeft met een object dat de Portal tag heeft en de speler nog kan stemmen dan stemt de speler op een van de portals.
+        //En neemt de hoeveelheid stemmen dat de speler heeft af.
         m_voting.g_totalVotes++;
         DontDestroyOnLoad(this.gameObject);
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
-           
         }
         m_voteCount--;
     }
@@ -181,10 +189,35 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+
         else
         {
             m_portals = null;
             m_canVote = false;
+        }
+    }
+
+    //De spelers health variabel neemt af met 1.
+    public void TakeDamage()
+    {
+        m_health--;
+
+        //Als de speler geen health meer over heeft gaat die dood.
+        if (m_health == 0)
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(HealthFlash());
+    }
+
+    private IEnumerator HealthFlash()
+    {
+        for(int i = 0; i< 10; i++)
+        {
+            m_DuckChild.SetActive(false);
+            yield return new WaitForSeconds(0.1f);
+            m_DuckChild.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }
