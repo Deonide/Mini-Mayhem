@@ -21,9 +21,11 @@ public class PlayerMovement : MonoBehaviour
     [CanBeNull]
     [SerializeField]
     private GameObject m_portals;
+    private Voting m_voting;
 
     //variablen voor het stemmen op je gameMode
     private bool m_canVote = false;
+    [SerializeField]
     private int m_voteCount = 1;
     #endregion
     #region Bomberduck
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        m_voting = FindObjectOfType<Voting>();
         rb = gameObject.GetComponent<Rigidbody>();
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
@@ -74,9 +77,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Vote()
     {
+        m_voting.g_totalVotes++;
+        DontDestroyOnLoad(this.gameObject);
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+           
         }
         m_voteCount--;
     }
