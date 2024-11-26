@@ -531,7 +531,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &4595343779447116715
 MonoBehaviour:
@@ -545,10 +545,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce7e33c4a81f504bba9275d61053226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 20
+  whichPlayer: 0
+  m_DuckChild: {fileID: 8234717453217977177}
   m_health: 3
+  scene:
+    m_Handle: 0
   m_portals: {fileID: 0}
-  m_bomb: {fileID: 8035583652281843268, guid: 8f1ca2a27a121164a91c635c8ba3c44c, type: 3}
+  m_voteCount: 1
+  m_bomb: {fileID: 749866245235577485, guid: 1ca4572265d644746a97cbfd62af9030, type: 3}
   m_bombSpawnPoint: {fileID: 2121462848331935438}
 --- !u!114 &2767829078315648509
 MonoBehaviour:

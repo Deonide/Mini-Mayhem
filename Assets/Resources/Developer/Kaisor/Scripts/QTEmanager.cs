@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using MiniGames.QuickTimeEvent;
 using UnityEngine;
 
 public class QTEmanager : MonoBehaviour
 {
-    public PlayerMovement p_Movement;
+    public PlayerMovement[] p_Movement;
 
+    // (K) QTE game properties. 
     private bool isCoroutineRunning = false;
 
     public float pauseBetweenQTE = 3f;
@@ -21,14 +23,30 @@ public class QTEmanager : MonoBehaviour
 
     public bool ifOnePlayerLeft = false;
 
-    // (K) Player input section (Subject to change).
-    public int playerChosenInput;
-    public bool playerAnswerCorrect;
+    // (K) Player Leaderboard record.
+    Dictionary<int, int>
+    leaderboard = new Dictionary<int, int>();
+
+    // (K) Player input section.
+    public int currentPlayers = 4; // (K) This var should be in a gamemanager at some point
+
+    public int[] playerChosenInput;
+    public int[] playerIncorrectAnswers;
+    public bool[] playerIsOut;
+    public int playersOut = 0;
+    private int playersOutToStopGame;
+    private int currentLeaderBoardPos;
 
     void Awake()
     {
-        p_Movement = FindAnyObjectByType<PlayerMovement>();
+        for(int i = 0; i < currentPlayers; i++) // (K) find and connect all existing PlayerMov scripts.
+        {
+            p_Movement[i] = FindAnyObjectByType<PlayerMovement>();
+        }
+
         QTE_SequenceActive = false;
+        playersOutToStopGame = currentPlayers - 1;
+        currentLeaderBoardPos = currentPlayers;
     }
 
     void Update()
@@ -37,7 +55,6 @@ public class QTEmanager : MonoBehaviour
         {
             isCoroutineRunning = true; // (K) Prevent multiple starts.
             Invoke("StartSequence", 2);
-            QTE_SequenceActive = true;
         }
     }
 
@@ -45,19 +62,21 @@ public class QTEmanager : MonoBehaviour
     {
         while (QTE_SequenceActive)
         {
-            pressWindowActive = true; // (K) Start QTE Sequence by opening the button press window.
+            pressWindowActive = true; // (K) Start QTE Sequence by opening the button press window and generating the QTE_input.
             GenerateQTE_Input();
-            PressIndicatedButton();
+            
 
             yield return new WaitForSeconds(timeToPress); // (K) Wait for the allotted amount of time before closing button press window.
 
+            CheckButtonPressResult();
             QTE_Cycle += 1;
             timeToPress /= timeIncrement; // (K) Increment time to slowly decrease timeToPress.
             pressWindowActive = false;
+            
 
             yield return new WaitForSeconds(pauseBetweenQTE); // (K) Amount of time to pause between each QTE sequence.
 
-            CheckButtonPressResult();
+            
             pauseBetweenQTE /= timeIncrement; // (K) Increment pause time to slowly decrease timeToPress 
 
             if (ifOnePlayerLeft)
@@ -71,6 +90,11 @@ public class QTEmanager : MonoBehaviour
     public void StartSequence()
     {
         StartCoroutine(QTE_SequenceStart());
+        QTE_SequenceActive = true;
+    }
+    public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
+    {
+        leaderboard.Add(currentPlayer, leaderBoardPos);
     }
     public void GenerateQTE_Input()
     {
@@ -86,21 +110,48 @@ public class QTEmanager : MonoBehaviour
             case 3: QTE_Correct_Input = 3; break; // Right Input
         }
     }
-    public void PressIndicatedButton()
-    {
-        // (K) Use PlayerMovement.cs to determine input and convert to PlayerChosenInput.        
-    }
-
     public void CheckButtonPressResult()
     {
-        if (playerChosenInput == QTE_Correct_Input)
+        for(int i = 0; i < currentPlayers; i++) // (K) Loop through all current player instances.
         {
-            //Player is correct. Continue playing.
+            if (playerChosenInput[i] == QTE_Correct_Input && playerIsOut[i] == false) // (K) Check if answer is correct.
+            {
+                // (K) Player is correct. Continue playing.
+                Debug.Log("Correct QTE Input");
+            }
+            else
+            {
+                // (K) Player is incorrect. Remove input.
+                Debug.Log("Incorrect QTE Input");
+                playerIncorrectAnswers[i]++;
+                p_Movement[i].TakeDamage();
+
+                if (playerIncorrectAnswers[i] == 4) // (K) amount of mistakes necessary to remove player from game.
+                {
+                    playerIsOut[i] = true;
+                    AddPlayerToLeaderBoard(i, currentLeaderBoardPos);
+                    currentLeaderBoardPos--;
+                    Debug.Log("Player " + i + " is out!");
+                }
+            }
+            if (playerIsOut[i] == true) // (K) when a player is eliminated add to the playersOut Int.
+            {
+                playersOut++;
+                if (playersOut == 3) // (K) If three players are out >>
+                {
+                    ifOnePlayerLeft = true;
+                    for (int t = 0; t < currentPlayers; t++) // (K) Check which player won.
+                    {
+                        if (playerIsOut[t] == false) 
+                        {
+                            Debug.Log("Player " + t + " wins!");
+                        }
+                    }
+                }
+            }
         }
-        else
-        {
-            //Player is incorrect. Remove input.
-        }
+       
+        
     }
 
 }
