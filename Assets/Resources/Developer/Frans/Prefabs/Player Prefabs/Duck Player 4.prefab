@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 20
+  m_DuckChild: {fileID: 4818543314474149570}
   m_health: 3
   m_portals: {fileID: 0}
   m_bomb: {fileID: 8035583652281843268, guid: 8f1ca2a27a121164a91c635c8ba3c44c, type: 3}
@@ -326,6 +327,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+--- !u!1 &4818543314474149570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+  m_PrefabInstance: {fileID: 5629374518555155347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5302204824062852216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
