@@ -9,10 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/PlayerHub.unity
-    guid: de3ab7efe4b546c4eaf3d463c78662fb
+    path: Assets/Scenes/Personal scenes/Teshawn.unity
+    guid: 18aadde0702fe16489d38d02444987bc
   - enabled: 1
     path: Assets/Scenes/Combat Mini Games.unity
     guid: 7ebb9b001f979994582d30a42e05ffab
+  - enabled: 1
+    path: Assets/Scenes/PlayerHub.unity
+    guid: de3ab7efe4b546c4eaf3d463c78662fb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ecc971a924bd4b946bb643d8aa6654e2, type: 2}
