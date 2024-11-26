@@ -13,19 +13,17 @@ public class Voting : MonoBehaviour
     [SerializeField] 
     private int m_additionalVote;
 
-   
-    public int g_totalVotes;
-
-
-
     [SerializeField]
     private bool m_hasVoted;
+
+    public int g_totalVotes;
+
     private void Start()
     {
         m_ports = FindObjectsOfType<Portals>().ToList();
         Debug.Log(m_ports[0].m_gameModes);
-
     }
+
     private void Update()
     {
        if(g_totalVotes > 1)
@@ -54,9 +52,7 @@ public class Voting : MonoBehaviour
                 CheckingGameMode();
             }
         }
-       
     }
-
 
     public void CheckingGameMode()
     {
@@ -73,14 +69,17 @@ public class Voting : MonoBehaviour
                 break;
         }
     }
+
     public void PlayingSurvival()
     {
         SceneManager.LoadScene("Combat Mini Games");
     }
+
     public void PlayingCombat()
     {
         SceneManager.LoadScene("Combat Mini Games");
     }
+
     public void PlayingQuick()
     {
         SceneManager.LoadScene("Combat Mini Games");

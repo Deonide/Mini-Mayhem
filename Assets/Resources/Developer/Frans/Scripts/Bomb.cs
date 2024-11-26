@@ -18,7 +18,7 @@ public class Bomb : MonoBehaviour
 
     private void OnDestroy()
     {
-        ExplosionDamage(transform.position, 2f);
+        ExplosionDamage(transform.position, 5f);
     }
 
     private void ExplosionDamage(Vector3 center, float radius)
