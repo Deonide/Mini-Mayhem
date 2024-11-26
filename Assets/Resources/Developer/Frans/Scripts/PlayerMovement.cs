@@ -1,5 +1,9 @@
 using JetBrains.Annotations;
 using MiniGames.Combat;
+using MiniGames.QuickTimeEvent;
+using System.Numerics;
+using System.Security.Cryptography;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,13 +13,17 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     #region Universal Variables
-    [SerializeField]
+    [SerializeField] public int whichPlayer = 0;
     private float playerSpeed = 2.0f;
+    public Scene scene;
 
     //Rigidbody
     Rigidbody rb;
-    private Vector2 movementInput = Vector2.zero;
-    public int m_health = 1;
+    private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
+
+    [SerializeField]
+    private int m_health = 3;
+
     #endregion
     #region Voting
     [CanBeNull]
@@ -40,8 +48,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         m_voting = FindObjectOfType<Voting>();
         rb = gameObject.GetComponent<Rigidbody>();
+        
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
     }
@@ -51,8 +61,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            movementInput = context.ReadValue<Vector2>();
-        }
+            int index = scene.buildIndex;
+            if (index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
+            {
+                QTEmanager qTEmanager = FindAnyObjectByType<QTEmanager>();
+                UnityEngine.Vector2 currentMove = context.ReadValue<UnityEngine.Vector2>();
+                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[1] = 0; //Input Up
+                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[1] = 1; //Input Down
+                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[1] = 2; //Input Left
+                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[1] = 3; //Input Right
+            }
+            else
+            {
+                movementInput = context.ReadValue<UnityEngine.Vector2>();
+            }
+        }        
     }
 
     public void OnAction(InputAction.CallbackContext context)
@@ -132,8 +155,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
-        Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
+        UnityEngine.Vector3 move = new UnityEngine.Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
+        UnityEngine.Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
 
         if (m_bombsRemaining < m_maxBombs)
