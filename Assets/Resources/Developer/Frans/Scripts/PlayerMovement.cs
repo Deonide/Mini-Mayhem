@@ -168,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     //De spelers health variabel neemt af met 1.
     public void TakeDamage()
     {
@@ -191,4 +192,5 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+
 }
