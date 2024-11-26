@@ -1,39 +1,53 @@
 using JetBrains.Annotations;
+using MiniGames.Combat;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Variables
+    #region Universal Variables
     [SerializeField]
     private float playerSpeed = 2.0f;
 
-    [SerializeField]
-    private int m_voteCount = 1;
-
-    [CanBeNull]
-    [SerializeField]
-    private GameObject m_portals, m_bomb, m_bombSpawnPoint;
-
-
-    //variablen voor het stemmen op je gameMode
-    [SerializeField] private bool m_canVote = false;
-
-
     //Rigidbody
     Rigidbody rb;
-
     private Vector2 movementInput = Vector2.zero;
+    private int m_health = 1;
+    #endregion
+    #region Voting
+    [CanBeNull]
+    [SerializeField]
+    private GameObject m_portals;
+
+    //variablen voor het stemmen op je gameMode
+    private bool m_canVote = false;
+    private int m_voteCount = 1;
+    #endregion
+    #region Bomberduck
+    [CanBeNull]
+    [SerializeField]
+    private GameObject m_bomb, m_bombSpawnPoint;
+
+    private int m_maxBombs = 1, m_bombsRemaining = 1;
+    private float m_bombTimer, m_maxBombTimer = 2f;
+    #endregion
+    #endregion
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        m_bombsRemaining = m_maxBombs;
+        m_bombTimer = m_maxBombTimer;
     }
 
     #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
+        //Wanneer deze actie word uitgevoerd dan beweeegt de speler.
         if (context.performed)
         {
             movementInput = context.ReadValue<Vector2>();
@@ -42,78 +56,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext context)
     {
+        //Wanener deze actionmap word uitgevoerd dan gebeurt de bij behorende actie
         if (context.performed)
         {
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
-
-            switch (index)
+            if (index == 1)
             {
-                case 1:
-                    Vote();
-                    break;
-                case 2:
-                    BomberDuck();
-                    break;
-                case 3:
-                    BumperDucks();
-                    break;
-                case 4:
-                    DuckLordSays();
-                    break;
-                case 5:
-                    QuickDucks();
-                    break;
-                case 6:
-                    FallingPlatforms();
-                    break;
-                case 7:
-                    SinkingPlatforms();
-                    break;
+                Vote();
+            }
+
+            if (index == 2)
+            {
+                /*                if ()*/
+                SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
             }
         }
     }
     #endregion
-    #region Actions
+
     private void Vote()
     {
+        //Als de speler colission heeft met een object dat de Portal tag heeft en de speler nog kan stemmen dan stemt de speler op een van de portals.
+        //En neemt de hoeveelheid stemmen dat de speler heeft af.
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
         }
         m_voteCount--;
     }
-
-    private void BomberDuck()
-    {
-        Instantiate(m_bomb, m_bombSpawnPoint.transform.position, Quaternion.identity);
-    }
-
-    private void BumperDucks()
-    {
-
-    }
-
-    private void DuckLordSays()
-    {
-
-    }
-
-    private void QuickDucks()
-    {
-        
-    }
-
-    private void FallingPlatforms()
-    {
-
-    }
-
-    private void SinkingPlatforms()
-    {
-
-    }
-    #endregion
 
     #region Jump
     //Variables voor de player movement/jump stats
@@ -163,10 +134,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
         Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
+
+        //Als de speler niet de maximale hoeveelheid bommen heeft dan loopt er een timer af als die op 0 staat krijgt de speler er een bom bij.
+        if (m_bombsRemaining < m_maxBombs)
+        {
+            m_bombTimer -= Time.fixedDeltaTime;
+            if(m_bombTimer <= 0)
+            {
+                m_bombTimer = m_maxBombTimer;
+                m_bombsRemaining++;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Checkt of de speler collision heeft met een object dat de portal tag heeft.
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
@@ -174,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_portals = collision.gameObject;
             }
-
         }
         else
         {
@@ -182,4 +164,18 @@ public class PlayerMovement : MonoBehaviour
             m_canVote = false;
         }
     }
+
+
+    //De spelers health variabel neemt af met 1.
+    public void TakeDamage()
+    {
+        m_health--;
+
+        //Als de speler geen health meer over heeft gaat die dood.
+        if (m_health == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
