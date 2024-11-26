@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6842020510861999477}
   - component: {fileID: 4668708163228534569}
   - component: {fileID: 7957736766727500224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Duck Player 4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 858288028178956721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.041435, y: 8.39053, z: 40.73064}
+  m_LocalPosition: {x: -39.041435, y: 1, z: 40.73064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99,9 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce7e33c4a81f504bba9275d61053226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 20
+  whichPlayer: 0
+  m_DuckChild: {fileID: 4818543314474149570}
+  m_health: 3
+  scene:
+    m_Handle: 0
   m_portals: {fileID: 0}
-  m_bomb: {fileID: 8035583652281843268, guid: 8f1ca2a27a121164a91c635c8ba3c44c, type: 3}
+  m_voteCount: 1
+  m_bomb: {fileID: 749866245235577485, guid: 1ca4572265d644746a97cbfd62af9030, type: 3}
   m_bombSpawnPoint: {fileID: 8084059112720602714}
 --- !u!114 &7957736766727500224
 MonoBehaviour:
@@ -178,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 378829549034161689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BombSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,10 +257,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7274615501834709717, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -5373442534587987241, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff4f8f7d5b859f4428f9ddedfb51cbeb, type: 2}
+    - target: {fileID: -5142858944495972243, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -3771993903449941626, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -264,9 +277,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff4f8f7d5b859f4428f9ddedfb51cbeb, type: 2}
+    - target: {fileID: -489245432823821165, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 205768359663447892, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
       propertyPath: m_Name
       value: Duck
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2296243564343416020, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -284,11 +309,32 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff4f8f7d5b859f4428f9ddedfb51cbeb, type: 2}
+    - target: {fileID: 6300163634248374190, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605684598416717449, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784903757802869550, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318216000769986578, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+--- !u!1 &4818543314474149570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
+  m_PrefabInstance: {fileID: 5629374518555155347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5302204824062852216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b90e9b536d7f350488ea20f4f53d7357, type: 3}
