@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,20 +22,18 @@ public class Voting : MonoBehaviour
     {
         m_ports = FindObjectsOfType<Portals>().ToList();
         Debug.Log(m_ports[0].m_gameModes);
-
     }
 
     private void Update()
     {
-        m_ports = m_ports.OrderByDescending(gamemode => gamemode.m_AmountOfVotes).ToList();
-
-        if (g_totalVotes > 1)
-        {
+       if(g_totalVotes > 1)
+       {
             m_hasVoted = true;
-        }
-
+       }
         if (m_hasVoted)
         {
+            m_ports = m_ports.OrderByDescending(gamemode => gamemode.m_AmountOfVotes).ToList();
+
             if (m_ports[0].m_AmountOfVotes == m_ports[1].m_AmountOfVotes)
             {
                 m_drawResult = Random.Range(0, 2);

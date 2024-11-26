@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
 using MiniGames.Combat;
+using MiniGames.QuickTimeEvent;
+using System.Numerics;
 using System.Security.Cryptography;
 using System.Collections;
 using UnityEngine;
@@ -11,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     #region Universal Variables
-    [SerializeField]
+    [SerializeField] public int whichPlayer = 0;
     private float playerSpeed = 2.0f;
+    public Scene scene;
 
     [SerializeField]
     private GameObject m_DuckChild;
@@ -22,15 +25,23 @@ public class PlayerMovement : MonoBehaviour
 
     //Rigidbody
     Rigidbody rb;
-    private Vector2 movementInput = Vector2.zero;
+
+    private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
+
+    [SerializeField]
+    private int m_health = 3;
+
+
     #endregion
     #region Voting
     [CanBeNull]
     [SerializeField]
     private GameObject m_portals;
+    private Voting m_voting;
 
     //variablen voor het stemmen op je gameMode
     private bool m_canVote = false;
+    [SerializeField]
     private int m_voteCount = 1;
     private Voting m_voting;
     #endregion
@@ -46,8 +57,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
+        scene = SceneManager.GetActiveScene();
         m_voting = FindObjectOfType<Voting>();
+        rb = gameObject.GetComponent<Rigidbody>();
+
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
     }
@@ -55,19 +68,29 @@ public class PlayerMovement : MonoBehaviour
     #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
-        //Wanneer deze actie word uitgevoerd dan beweeegt de speler.
         if (context.performed)
         {
-            movementInput = context.ReadValue<Vector2>();
-        }
+            int index = scene.buildIndex;
+            if (index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
+            {
+                QTEmanager qTEmanager = FindAnyObjectByType<QTEmanager>();
+                UnityEngine.Vector2 currentMove = context.ReadValue<UnityEngine.Vector2>();
+                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[1] = 0; //Input Up
+                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[1] = 1; //Input Down
+                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[1] = 2; //Input Left
+                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[1] = 3; //Input Right
+            }
+            else
+            {
+                movementInput = context.ReadValue<UnityEngine.Vector2>();
+            }
+        }        
     }
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        //Wanener deze actionmap word uitgevoerd dan gebeurt de bij behorende actie
         if (context.performed)
         {
-            SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
             Scene scene = SceneManager.GetActiveScene();
             int index = scene.buildIndex;
             if (index == 1)
@@ -93,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+           
         }
         m_voteCount--;
     }
@@ -142,11 +166,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
-        Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
+        UnityEngine.Vector3 move = new UnityEngine.Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
+        UnityEngine.Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
 
-        //Als de speler niet de maximale hoeveelheid bommen heeft dan loopt er een timer af als die op 0 staat krijgt de speler er een bom bij.
         if (m_bombsRemaining < m_maxBombs)
         {
             m_bombTimer -= Time.fixedDeltaTime;
@@ -160,7 +183,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Checkt of de speler collision heeft met een object dat de portal tag heeft.
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
@@ -168,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_portals = collision.gameObject;
             }
+
         }
         else
         {
