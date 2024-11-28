@@ -21,7 +21,6 @@ public class Voting : MonoBehaviour
     private void Start()
     {
         m_ports = FindObjectsOfType<Portals>().ToList();
-        Debug.Log(m_ports[0].m_gameModes);
     }
 
     private void Update()
@@ -72,7 +71,7 @@ public class Voting : MonoBehaviour
 
     public void PlayingSurvival()
     {
-        SceneManager.LoadScene("Combat Mini Games");
+        SceneManager.LoadScene("Survival Mini Games");
     }
 
     public void PlayingCombat()
@@ -82,6 +81,6 @@ public class Voting : MonoBehaviour
 
     public void PlayingQuick()
     {
-        SceneManager.LoadScene("Combat Mini Games");
+        SceneManager.LoadScene("QTE Mini Games");
     }
 }

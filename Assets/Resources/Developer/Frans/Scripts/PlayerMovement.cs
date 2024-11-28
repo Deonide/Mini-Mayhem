@@ -7,29 +7,30 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Variables
     #region Universal Variables
-
-
     [SerializeField] 
     public int whichPlayer = 0;
     [SerializeField]
     private GameObject m_DuckChild;
-    
+
     [SerializeField]
     private int m_health = 3;
 
-    private float playerSpeed = 20f;
-    public Scene scene;
+    //<-- Movement -->
+    private UnityEngine.Vector2 m_movementInput = UnityEngine.Vector2.zero;
+    private float m_rotateDirection;
+    private float m_playerSpeed = 20f;
+    private float m_rotationSpeed = 50f;
+    //<- End Movement ->
 
     //Rigidbody
     Rigidbody rb;
-
-    private UnityEngine.Vector2 movementInput = UnityEngine.Vector2.zero;
     #endregion
     #region Voting
     [CanBeNull]
@@ -50,14 +51,19 @@ public class PlayerMovement : MonoBehaviour
     private int m_maxBombs = 1, m_bombsRemaining = 1;
     private float m_bombTimer, m_maxBombTimer = 2f;
     #endregion
+    #region BumperDuck
+    [SerializeField]
+    private GameObject m_bumperDuck;
+    [SerializeField]
+    private bool m_bumperSpawned;
+    #endregion
     #endregion
 
     void Start()
     {
-        scene = SceneManager.GetActiveScene();
         m_voting = FindObjectOfType<Voting>();
         rb = gameObject.GetComponent<Rigidbody>();
-
+        m_bumperDuck.SetActive(false);
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
     }
@@ -67,10 +73,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            int index = scene.buildIndex;
-            if (index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
+            Debug.Log(GameManager.Instance.m_chooseMiniGame);
+            GameManager.Instance.CheckScene();
+            if (GameManager.Instance.m_index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
             {
                 QTEmanager qTEmanager = FindAnyObjectByType<QTEmanager>();
+
                 UnityEngine.Vector2 currentMove = context.ReadValue<UnityEngine.Vector2>();
                 if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[1] = 0; //Input Up
                 else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[1] = 1; //Input Down
@@ -79,27 +87,45 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                movementInput = context.ReadValue<UnityEngine.Vector2>();
+                m_movementInput = context.ReadValue<UnityEngine.Vector2>();
             }
         }        
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.CheckScene();
+        if (GameManager.Instance.m_index == 3)
+        {
+
+        }
+
+        else if (context.performed)
+        {
+            m_rotateDirection = context.ReadValue<float>();
+        }
+        else if (!context.performed)
+        {
+            m_rotateDirection = 0;
+        }
     }
 
     public void OnAction(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
-            Scene scene = SceneManager.GetActiveScene();
-            int index = scene.buildIndex;
-            if (index == 1)
+            GameManager.Instance.CheckScene(); ;
+            if (GameManager.Instance.m_index == 1)
             {
                 Vote();
             }
 
-            if (index == 2)
+            else if (GameManager.Instance.m_index == 2)
             {
-                /*                if ()*/
-                SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
+                if(GameManager.Instance.m_chooseMiniGame == 0)
+                {
+                    SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
+                }
             }
         }
     }
@@ -163,10 +189,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UnityEngine.Vector3 move = new UnityEngine.Vector3(movementInput.x, 0, movementInput.y).normalized * playerSpeed;
-        UnityEngine.Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
-        rb.MovePosition(newPosition);
-
+        PlayerMove();
         if (m_bombsRemaining < m_maxBombs)
         {
             m_bombTimer -= Time.fixedDeltaTime;
@@ -176,10 +199,25 @@ public class PlayerMovement : MonoBehaviour
                 m_bombsRemaining++;
             }
         }
+
+        if (GameManager.Instance.m_index == 2 && GameManager.Instance.m_chooseMiniGame == 1 && !m_bumperSpawned)
+        {
+            m_bumperDuck.SetActive(true);
+            m_bumperSpawned = true;
+        }
+    }
+
+    private void PlayerMove()
+    {
+        UnityEngine.Vector3 move = new UnityEngine.Vector3(m_movementInput.x, 0, m_movementInput.y).normalized * m_playerSpeed;
+        UnityEngine.Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
+        rb.MovePosition(newPosition);
+        transform.Rotate(UnityEngine.Vector3.up * Time.deltaTime * m_rotationSpeed * m_rotateDirection);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        #region PlayerHub
         if (collision.gameObject.CompareTag("Portal"))
         {
             m_canVote = true;
@@ -187,7 +225,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_portals = collision.gameObject;
             }
-
         }
 
         else
@@ -195,8 +232,10 @@ public class PlayerMovement : MonoBehaviour
             m_portals = null;
             m_canVote = false;
         }
+        #endregion
     }
 
+    #region Reusable functions
     //De spelers health variabel neemt af met 1.
     public void TakeDamage()
     {
@@ -212,7 +251,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator HealthFlash()
     {
-        for(int i = 0; i< 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             m_DuckChild.SetActive(false);
             yield return new WaitForSeconds(0.1f);
@@ -220,4 +259,5 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
+    #endregion
 }
