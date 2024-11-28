@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &931896363
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -272,9 +272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5dd7ee2f898a7f4593c367dfc67020d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spawnDelay: 2
+  m_amountOfObjects: 5
   m_arenaRadius: 10
-  m_cubeSpawnHight: 5.18
+  m_objectSize: 1
+  m_cubeSpawnHight: 5
   m_objectsToDrop: {fileID: 7788165225086151583, guid: b6d52f893619db447867936ee01bb83b, type: 3}
+  m_floorTiles: {fileID: 4424819049660710087, guid: d6d39d368fd5e184bbedd4ee7c2ee156, type: 3}
 --- !u!4 &1118705248
 Transform:
   m_ObjectHideFlags: 0
@@ -401,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1285372159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,7 +607,7 @@ Transform:
   m_GameObject: {fileID: 1497254514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -722,7 +726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1915999190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2129440193
 MonoBehaviour:
   m_ObjectHideFlags: 0
