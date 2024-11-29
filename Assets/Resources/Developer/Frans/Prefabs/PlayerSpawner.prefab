@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3119700924255817035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.72307205, y: -0.0000009536743, z: 4.530018}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,7 +91,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -4972531134824726151, guid: 81577f1dc0097364894890b806b5fd83, type: 3}
-  m_PlayerPrefab: {fileID: 5062600773691720638, guid: f02a053df472aa84bbaad11d3005d5af, type: 3}
+  m_PlayerPrefab: {fileID: 4064376734825594542, guid: 8c7da8be44640bf46ae9fbbf88721adc, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

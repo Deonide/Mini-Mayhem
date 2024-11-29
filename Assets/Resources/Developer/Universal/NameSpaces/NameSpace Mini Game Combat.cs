@@ -22,6 +22,7 @@ namespace MiniGames
             {
                 //Als de spelers tegen elkaar aan bouncen dan bouncen ze van elkaar af.
 /*              gameObject.*/
+                
             }
         }
     }
