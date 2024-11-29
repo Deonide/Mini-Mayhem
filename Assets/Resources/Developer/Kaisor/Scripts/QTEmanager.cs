@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MiniGames.QuickTimeEvent;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEmanager : MonoBehaviour
 {
     public PlayerMovement[] p_Movement;
+    public LeaderBoardManager boardManager;
 
     // (K) QTE game properties. 
     private bool isCoroutineRunning = false;
@@ -23,12 +26,12 @@ public class QTEmanager : MonoBehaviour
 
     public bool ifOnePlayerLeft = false;
 
-    // (K) Player Leaderboard record.
+    // (K) Player Leaderboard record. (CurrentPlayer, LeaderBoardPosition)
     Dictionary<int, int>
-    leaderboard = new Dictionary<int, int>();
+    qte_leaderboard = new Dictionary<int, int>();
 
     // (K) Player input section.
-    public int currentPlayers = 4; // (K) This var should be in a gamemanager at some point
+    //public int currentPlayers = 4; (K) This var should be in a gamemanager at some point
 
     public int[] playerChosenInput;
     public int[] playerIncorrectAnswers;
@@ -39,14 +42,15 @@ public class QTEmanager : MonoBehaviour
 
     void Awake()
     {
-        for(int i = 0; i < currentPlayers; i++) // (K) find and connect all existing PlayerMov scripts.
+        boardManager = FindAnyObjectByType<LeaderBoardManager>();
+        for(int i = 0; i < boardManager.mainCurrentPlayers; i++) // (K) find and connect all existing PlayerMov scripts.
         {
             p_Movement[i] = FindAnyObjectByType<PlayerMovement>();
         }
 
         QTE_SequenceActive = false;
-        playersOutToStopGame = currentPlayers - 1;
-        currentLeaderBoardPos = currentPlayers;
+        playersOutToStopGame = boardManager.mainCurrentPlayers - 1;
+        currentLeaderBoardPos = boardManager.mainCurrentPlayers;
     }
 
     void Update()
@@ -94,7 +98,7 @@ public class QTEmanager : MonoBehaviour
     }
     public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
     {
-        leaderboard.Add(currentPlayer, leaderBoardPos);
+        qte_leaderboard.Add(currentPlayer, leaderBoardPos);
     }
     public void GenerateQTE_Input()
     {
@@ -112,7 +116,7 @@ public class QTEmanager : MonoBehaviour
     }
     public void CheckButtonPressResult()
     {
-        for(int i = 0; i < currentPlayers; i++) // (K) Loop through all current player instances.
+        for(int i = 0; i < boardManager.mainCurrentPlayers; i++) // (K) Loop through all current player instances.
         {
             if (playerChosenInput[i] == QTE_Correct_Input && playerIsOut[i] == false) // (K) Check if answer is correct.
             {
@@ -137,10 +141,10 @@ public class QTEmanager : MonoBehaviour
             if (playerIsOut[i] == true) // (K) when a player is eliminated add to the playersOut Int.
             {
                 playersOut++;
-                if (playersOut == 3) // (K) If three players are out >>
+                if (playersOut == playersOutToStopGame) // (K) If three players are out >>
                 {
                     ifOnePlayerLeft = true;
-                    for (int t = 0; t < currentPlayers; t++) // (K) Check which player won.
+                    for (int t = 0; t < boardManager.mainCurrentPlayers; t++) // (K) Check which player won.
                     {
                         if (playerIsOut[t] == false) 
                         {
@@ -155,3 +159,4 @@ public class QTEmanager : MonoBehaviour
     }
 
 }
+
