@@ -7,6 +7,7 @@ public class LeaderBoardManager : MonoBehaviour
 {
     List<PlayerData> playerdataList = new List<PlayerData>();
     public int mainCurrentPlayers = 4;
+    public int maxMiniGamePoints = 100; // (K) 4x this is 1st players reward.
 
     private void Awake()
     {
@@ -14,6 +15,19 @@ public class LeaderBoardManager : MonoBehaviour
         {
             playerdataList[i] = new PlayerData();
             playerdataList[i].playerID = i;
+        }
+    }
+
+    public void GrantPointsToOnePlayer(int playerID2, int leaderBoardPos) 
+    {
+        // (K) lowest points are the amount the last place player gets. Each player after gets double the points.
+        int tempPoints = maxMiniGamePoints /= leaderBoardPos;
+        for (int i = 0;i < playerdataList.Count; i++)
+        {
+            if (playerdataList[i].playerID == playerID2)
+            {
+                playerdataList[i].playerScore += tempPoints;
+            }
         }
     }
 

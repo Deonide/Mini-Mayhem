@@ -27,8 +27,10 @@ public class QTEmanager : MonoBehaviour
     public bool ifOnePlayerLeft = false;
 
     // (K) Player Leaderboard record. (CurrentPlayer, LeaderBoardPosition)
+    /* Obsolete
     Dictionary<int, int>
     qte_leaderboard = new Dictionary<int, int>();
+    */
 
     // (K) Player input section.
     //public int currentPlayers = 4; (K) This var should be in a gamemanager at some point
@@ -98,7 +100,8 @@ public class QTEmanager : MonoBehaviour
     }
     public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
     {
-        qte_leaderboard.Add(currentPlayer, leaderBoardPos);
+        //qte_leaderboard.Add(currentPlayer, leaderBoardPos); Obsolete
+        boardManager.GrantPointsToOnePlayer(currentPlayer, leaderBoardPos);
     }
     public void GenerateQTE_Input()
     {
