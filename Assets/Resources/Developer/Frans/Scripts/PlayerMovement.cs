@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
             else if (GameManager.Instance.m_index == 2)
             {
-                if(GameManager.Instance.m_chooseMiniGame == 0 && m_bombsRemaining >0)
+                if(GameManager.Instance.m_chooseMiniGame == 0 && m_bombsRemaining > 0)
                 {
                     SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
                     m_bombsRemaining--;
