@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -28,11 +29,19 @@ namespace MiniGames
     {
         public static class SinkingPlatforms
         {
-            public static void Sinking(GameObject platformSinking,Vector3 originalSpawnPoint)
+            public static void Sinking(GameObject platformSinking,Vector3 originalSpawnPoint,bool isSkinking, float canBeDroppedCoolDown, float maxCooldown)
             {
-                if (platformSinking.transform.position.y < -5f)
+                if (platformSinking.transform.position.y < -5f && isSkinking)
                 {
                     platformSinking.transform.position = originalSpawnPoint;
+                    isSkinking = false;
+                    canBeDroppedCoolDown -= Time.deltaTime;
+                    
+                }
+                if(canBeDroppedCoolDown <= 0)
+                {
+                    canBeDroppedCoolDown = maxCooldown;
+                    isSkinking = true;
                 }
             }
         }
