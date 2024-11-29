@@ -45,9 +45,13 @@ public class QTEmanager : MonoBehaviour
     void Awake()
     {
         boardManager = FindAnyObjectByType<LeaderBoardManager>();
-        for(int i = 0; i < boardManager.mainCurrentPlayers; i++) // (K) find and connect all existing PlayerMov scripts.
+
+        PlayerMovement[] allP_Movement = FindObjectsOfType<PlayerMovement>();
+
+        p_Movement = new PlayerMovement[boardManager.mainCurrentPlayers];
+        for (int i = 0; i < boardManager.mainCurrentPlayers; i++) // (K) find and connect all existing PlayerMov scripts.
         {
-            p_Movement[i] = FindAnyObjectByType<PlayerMovement>();
+            p_Movement[i] = allP_Movement[i];
         }
 
         QTE_SequenceActive = false;
