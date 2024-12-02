@@ -80,10 +80,10 @@ public class PlayerMovement : MonoBehaviour
                 QTEmanager qTEmanager = FindAnyObjectByType<QTEmanager>();
 
                 UnityEngine.Vector2 currentMove = context.ReadValue<UnityEngine.Vector2>();
-                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[1] = 0; //Input Up
-                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[1] = 1; //Input Down
-                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[1] = 2; //Input Left
-                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[1] = 3; //Input Right
+                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[whichPlayer] = 0; //Input Up
+                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[whichPlayer] = 1; //Input Down
+                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[whichPlayer] = 2; //Input Left
+                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[whichPlayer] = 3; //Input Right
             }
             else
             {
@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            GameManager.Instance.CheckScene(); ;
+            GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 1)
             {
                 Vote();
@@ -122,9 +122,10 @@ public class PlayerMovement : MonoBehaviour
 
             else if (GameManager.Instance.m_index == 2)
             {
-                if(GameManager.Instance.m_chooseMiniGame == 0)
+                if(GameManager.Instance.m_chooseMiniGame == 0 && m_bombsRemaining > 0)
                 {
                     SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
+                    m_bombsRemaining--;
                 }
             }
         }

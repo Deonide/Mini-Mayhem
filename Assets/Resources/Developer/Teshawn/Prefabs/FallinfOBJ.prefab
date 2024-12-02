@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 564902263665519153}
   - component: {fileID: 870760098917673400}
   - component: {fileID: 6118063202302706667}
-  - component: {fileID: 6791454563084314762}
+  - component: {fileID: 6358932903793556278}
   m_Layer: 0
   m_Name: FallinfOBJ
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6791454563084314762
+--- !u!114 &6358932903793556278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
