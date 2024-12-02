@@ -6,18 +6,35 @@ using MiniGames.SinkingPlatforms;
 
 public class SinkingPlatform : MonoBehaviour
 {
-    private Vector3 m_originalSPawnPoint;
 
-    private GameObject Sinking;
+    private Vector3 m_originalSPawnPoint;
+    private GameObject m_SinkingObject;
+    private Rigidbody m_Rigidbody;
+    private float m_dropCoolDown;
+    private float m_MaxCD = 5f;
+    public bool G_isFalling;
 
     private void Start()
     {
-        Sinking = this.gameObject;
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_SinkingObject = this.gameObject;
         m_originalSPawnPoint = this.transform.position;
-
+        m_dropCoolDown = m_MaxCD;
     }
+
     private void Update()
     {
-        SinkingPlatforms.Sinking(Sinking, m_originalSPawnPoint);
+        SinkingPlatforms.Sinking(m_SinkingObject, m_originalSPawnPoint, G_isFalling, m_dropCoolDown, m_MaxCD);
+        if (G_isFalling) 
+        {
+
+            m_Rigidbody.useGravity = true;
+
+        }
+        else
+        {
+            m_Rigidbody.useGravity = false;
+        }
+        
     }
 }
