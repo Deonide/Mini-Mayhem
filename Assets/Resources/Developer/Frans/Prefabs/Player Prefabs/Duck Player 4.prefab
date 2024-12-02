@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 858288028178956721}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.2, y: 1, z: 18}
+  m_LocalPosition: {x: 20.070002, y: 1, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103,8 +103,6 @@ MonoBehaviour:
   whichPlayer: 0
   m_DuckChild: {fileID: 4818543314474149570}
   m_health: 3
-  m_scene:
-    m_Handle: 0
   m_portals: {fileID: 0}
   m_voteCount: 1
   m_bomb: {fileID: 749866245235577485, guid: 1ca4572265d644746a97cbfd62af9030, type: 3}
