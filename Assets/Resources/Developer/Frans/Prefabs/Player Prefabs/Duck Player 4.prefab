@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce7e33c4a81f504bba9275d61053226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichPlayer: 0
+  m_whichPlayer: 0
   m_DuckChild: {fileID: 4818543314474149570}
   m_health: 3
   m_portals: {fileID: 0}
