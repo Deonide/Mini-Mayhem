@@ -10,13 +10,13 @@ namespace MiniGames
         {
             public static void SpawnGrid(int numberOfCubes, float circleRadius,float yPos, float objectSize,GameObject objectToSPawn)
             {
-
                 for (int i = 0; i < numberOfCubes; i++)
                 {
+
                     float x = Random.Range(-circleRadius,circleRadius);
                     float z = Random.Range(-circleRadius,circleRadius);
                     Vector3 pos = new Vector3(x, yPos, z);
-                    if (new Vector3(x, yPos, z).magnitude >= circleRadius) continue;
+                    if (new Vector3(x, yPos, z).magnitude / 8 >= circleRadius) continue;
 
                     objectToSPawn = GameObject.Instantiate(objectToSPawn, pos *(objectSize * 2),Quaternion.identity);
                 }

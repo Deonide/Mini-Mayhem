@@ -12,6 +12,6 @@ public class CubesDespawning : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerMovement>().TakeDamage();
         }
-        Destroy(this.gameObject);
+       Destroy(this.gameObject);
     }
 }

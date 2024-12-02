@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene Loaded" + scene.name);
-        m_chooseMiniGame = 1;/*Random.Range(0, 2);*/
+        m_chooseMiniGame = 0;/*Random.Range(0, 2);*/
         Debug.Log(m_chooseMiniGame);
 
     }
