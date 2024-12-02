@@ -5,16 +5,25 @@ using UnityEngine;
 
 public class LeaderBoardManager : MonoBehaviour
 {
-    List<PlayerData> playerdataList = new List<PlayerData>();
-    public int mainCurrentPlayers = 4;
+    [SerializeField] List<PlayerData> playerdataList = new List<PlayerData>();
+    public int mainCurrentPlayers = 0;
     public int maxMiniGamePoints = 100; // (K) 4x this is 1st players reward.
 
     private void Awake()
     {
-        for (int i = 0; i < mainCurrentPlayers; i++)
+        PlayerMovement[] allP_Movement = FindObjectsOfType<PlayerMovement>();
+
+        mainCurrentPlayers = Mathf.Min(4, allP_Movement.Length); // (K) Count amount of players in scene.
+
+        for (int i = 0; i < mainCurrentPlayers; i++) // (K) Attach a playerID to existing players.
         {
-            playerdataList[i] = new PlayerData();
-            playerdataList[i].playerID = i;
+            PlayerData newPlayerData = new PlayerData
+            {
+                playerID = i,
+                playerScore = 0, 
+                playerPosition = 0 
+            };
+            playerdataList.Add(newPlayerData);
         }
     }
 
