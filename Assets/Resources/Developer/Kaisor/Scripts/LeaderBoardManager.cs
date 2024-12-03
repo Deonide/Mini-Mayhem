@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LeaderBoardManager : MonoBehaviour
 {
-    [SerializeField] List<PlayerData> playerdataList = new List<PlayerData>();
+    [SerializeField] List<PlayerData> playerdataList = new List<PlayerData>(); 
     public int mainCurrentPlayers = 0;
     public int maxMiniGamePoints = 100; // (K) 4x this is 1st players reward.
 
