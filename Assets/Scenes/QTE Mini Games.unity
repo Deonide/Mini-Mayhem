@@ -595,7 +595,7 @@ MonoBehaviour:
   boardManager: {fileID: 0}
   pauseBetweenQTE: 3
   timeToPress: 2
-  timeIncrement: 1.25
+  timeIncrement: 1.05
   pressWindowActive: 0
   QTE_SequenceActive: 0
   QTE_GameStart: 0
