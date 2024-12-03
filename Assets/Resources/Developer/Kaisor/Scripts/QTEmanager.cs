@@ -47,13 +47,8 @@ public class QTEmanager : MonoBehaviour
         playerIncorrectAnswers = new int[boardManager.mainCurrentPlayers];
         playerIsOut = new bool[boardManager.mainCurrentPlayers];
 
-        //QTE_SequenceActive = false;
         playersOutToStopGame = boardManager.mainCurrentPlayers - 1;
         currentLeaderBoardPos = boardManager.mainCurrentPlayers;
-
-        //Test Coroutine
-        isCoroutineRunning = true;
-        StartSequence();
     }
 
     void Update()
@@ -76,7 +71,7 @@ public class QTEmanager : MonoBehaviour
             yield return new WaitForSeconds(timeToPress); // (K) Wait for the allotted amount of time before closing button press window.
 
             CheckButtonPressResult();
-            QTE_Cycle += 1;
+            QTE_Cycle += 1; 
             timeToPress /= timeIncrement; // (K) Increment time to slowly decrease timeToPress.
             pressWindowActive = false;
 
@@ -101,7 +96,6 @@ public class QTEmanager : MonoBehaviour
 
     public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
     {
-        //qte_leaderboard.Add(currentPlayer, leaderBoardPos); Obsolete
         boardManager.GrantPointsToOnePlayer(currentPlayer, leaderBoardPos);
     }
      
