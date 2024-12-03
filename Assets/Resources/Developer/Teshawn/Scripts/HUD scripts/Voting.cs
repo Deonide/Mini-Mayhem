@@ -14,7 +14,8 @@ public class Voting : MonoBehaviour
     private int m_additionalVote;
     [SerializeField]
     private bool m_hasVoted;
-    private float m_voteTimer = 5f;
+
+    private float m_voteTimer = 3f;
 
     public int g_totalVotes;
 

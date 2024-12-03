@@ -16,15 +16,15 @@ namespace MiniGames
             }
         }
 
-        public static class BumperDucks
+/*        public static class BumperDucks
         {
             public static void BumpingDucks(float speed, float bounce)
             {
                 //Als de spelers tegen elkaar aan bouncen dan bouncen ze van elkaar af.
-/*              gameObject.*/
+*//*              gameObject.*//*
                 
             }
-        }
+        }*/
     }
 }
 
