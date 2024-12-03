@@ -102,11 +102,13 @@ public class QTEmanager : MonoBehaviour
         StartCoroutine(QTE_SequenceStart());
         QTE_SequenceActive = true;
     }
+
     public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
     {
         //qte_leaderboard.Add(currentPlayer, leaderBoardPos); Obsolete
         boardManager.GrantPointsToOnePlayer(currentPlayer, leaderBoardPos);
     }
+     
     public void GenerateQTE_Input()
     {
         int randomInput = Random.Range(0, 3);
