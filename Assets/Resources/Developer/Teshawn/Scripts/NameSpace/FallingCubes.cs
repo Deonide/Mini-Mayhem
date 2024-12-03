@@ -16,7 +16,7 @@ namespace MiniGames
                     float x = Random.Range(-circleRadius,circleRadius);
                     float z = Random.Range(-circleRadius,circleRadius);
                     Vector3 pos = new Vector3(x, yPos, z);
-                    if (new Vector3(x, yPos, z).magnitude / 8 >= circleRadius) continue;
+                    if (new Vector3(x, yPos, z).magnitude >= circleRadius) continue;
 
                     objectToSPawn = GameObject.Instantiate(objectToSPawn, pos *(objectSize * 2),Quaternion.identity);
                 }
