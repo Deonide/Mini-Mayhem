@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using MiniGames.QuickTimeEvent;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QTEmanager : MonoBehaviour
@@ -25,20 +22,11 @@ public class QTEmanager : MonoBehaviour
     public int QTE_Correct_Input;
 
     public bool ifOnePlayerLeft = false;
-
-    // (K) Player Leaderboard record. (CurrentPlayer, LeaderBoardPosition)
-    /* Obsolete
-    Dictionary<int, int>
-    qte_leaderboard = new Dictionary<int, int>();
-    */
-
-    // (K) Player input section.
-    //public int currentPlayers = 4; (K) This var should be in a gamemanager at some point
+    public int playersOut = 0;
 
     public int[] playerChosenInput;
     public int[] playerIncorrectAnswers;
     public bool[] playerIsOut;
-    public int playersOut = 0;
     private int playersOutToStopGame;
     private int currentLeaderBoardPos;
 
@@ -54,9 +42,18 @@ public class QTEmanager : MonoBehaviour
             p_Movement[i] = allP_Movement[i];
         }
 
-        QTE_SequenceActive = false;
+        // (K) Make sure the index's match the amount of players.
+        playerChosenInput = new int[boardManager.mainCurrentPlayers];
+        playerIncorrectAnswers = new int[boardManager.mainCurrentPlayers];
+        playerIsOut = new bool[boardManager.mainCurrentPlayers];
+
+        //QTE_SequenceActive = false;
         playersOutToStopGame = boardManager.mainCurrentPlayers - 1;
         currentLeaderBoardPos = boardManager.mainCurrentPlayers;
+
+        //Test Coroutine
+        isCoroutineRunning = true;
+        StartSequence();
     }
 
     void Update()
@@ -74,7 +71,7 @@ public class QTEmanager : MonoBehaviour
         {
             pressWindowActive = true; // (K) Start QTE Sequence by opening the button press window and generating the QTE_input.
             GenerateQTE_Input();
-            
+
 
             yield return new WaitForSeconds(timeToPress); // (K) Wait for the allotted amount of time before closing button press window.
 
@@ -82,25 +79,24 @@ public class QTEmanager : MonoBehaviour
             QTE_Cycle += 1;
             timeToPress /= timeIncrement; // (K) Increment time to slowly decrease timeToPress.
             pressWindowActive = false;
-            
+
 
             yield return new WaitForSeconds(pauseBetweenQTE); // (K) Amount of time to pause between each QTE sequence.
 
-            
             pauseBetweenQTE /= timeIncrement; // (K) Increment pause time to slowly decrease timeToPress 
 
             if (ifOnePlayerLeft)
             {
                 QTE_SequenceActive = false;
-                yield break; // (K) Insert round end/ victory function here.
+                yield break; ; // (K) Insert round end/ victory function here.
             }
-        }       
+        }
     }
 
     public void StartSequence()
     {
-        StartCoroutine(QTE_SequenceStart());
         QTE_SequenceActive = true;
+        StartCoroutine(QTE_SequenceStart());
     }
 
     public void AddPlayerToLeaderBoard(int currentPlayer, int leaderBoardPos)
@@ -130,6 +126,7 @@ public class QTEmanager : MonoBehaviour
             if (playerChosenInput[i] == QTE_Correct_Input && playerIsOut[i] == false) // (K) Check if answer is correct.
             {
                 // (K) Player is correct. Continue playing.
+                // (K) Place jumping animation for player here! (grab the p_Movement[i] and play the animation from there.)
                 Debug.Log("Correct QTE Input");
             }
             else
