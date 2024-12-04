@@ -229,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage()
     {
         m_health--;
-
+        Debug.Log("received damage");
         //Als de speler geen health meer over heeft gaat die dood.
         if (m_health == 0)
         {
