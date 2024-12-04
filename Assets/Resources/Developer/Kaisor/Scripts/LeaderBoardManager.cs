@@ -20,7 +20,7 @@ public class LeaderBoardManager : MonoBehaviour
             PlayerData newPlayerData = new PlayerData
             {
                 playerID = i,
-                playerScore = 0, 
+                playerScore = 0,
                 playerPosition = 0 
             };
             playerdataList.Add(newPlayerData);
