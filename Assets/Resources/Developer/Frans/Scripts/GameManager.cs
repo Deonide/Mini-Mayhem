@@ -11,7 +11,6 @@ public class GameManager : Singleton<GameManager>
     public int m_chooseMiniGame;
     public Scene m_scene;
     public int m_index;
-    private PlayerMovement m_playerMovement;
 
     // (K) Leaderboard Properties
     [SerializeField] List<PlayerData> playerdataList = new List<PlayerData>();
@@ -24,12 +23,12 @@ public class GameManager : Singleton<GameManager>
     public int m_playerOutToStopGame;
     public bool m_isOnePlayerLeft;
     public List<bool> m_outPlayers = new List<bool>();
-    private bool m_playerOut;
 
-    public PlayerInputManager playerInputManager;
+    public PlayerInputManager m_playerInputManager;
+
     private void Start()
     {
-        playerInputManager.onPlayerJoined += CountAmountOfPlayers;
+        m_playerInputManager.onPlayerJoined += CountAmountOfPlayers;
     }
 
     public void CountAmountOfPlayers(PlayerInput player)
@@ -49,7 +48,6 @@ public class GameManager : Singleton<GameManager>
             playerdataList.Add(newPlayerData);
             Debug.Log(newPlayerData.playerID);
         }
-
     }
 
     public void CheckScene()
@@ -110,10 +108,9 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < playerdataList.Count; i++)
         {
             allP_Movement[i].PlayerOn();
-
-
-
         }
+
+        SceneManager.LoadScene("PlayerHub");
     }
 }
 
