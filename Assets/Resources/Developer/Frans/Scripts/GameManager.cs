@@ -143,7 +143,7 @@ public class GameManager : Singleton<GameManager>
         {
             if (m_playerIDS[i] == playerID2)
             {
-                m_scoreList[i] += tempPoints;
+                m_scoreList[i] += tempPoints * 2;
                 Debug.Log(m_scoreList[i]);
                 m_ListScoreTextUI[i].text = m_scoreList[i].ToString();
             }
