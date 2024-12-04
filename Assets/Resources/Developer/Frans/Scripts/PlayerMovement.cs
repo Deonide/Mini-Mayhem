@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int m_health = 3;
 
+    private bool m_playerOut;
+
     //<-- Movement -->
     private UnityEngine.Vector2 m_movementInput = UnityEngine.Vector2.zero;
     private float m_rotateDirection;
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (context.performed)
+        else if (context.performed && !m_playerOut)
         {
             m_rotateDirection = context.ReadValue<float>();
         }
@@ -106,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 1)
@@ -233,9 +235,28 @@ public class PlayerMovement : MonoBehaviour
         //Als de speler geen health meer over heeft gaat die dood.
         if (m_health == 0)
         {
-            Destroy(gameObject);
+            m_playerOut = true;
+            PlayerOff();
+            GameManager.Instance.PlayerEliminated();
         }
-        StartCoroutine(HealthFlash());
+
+        else if(m_health > 0)
+        {
+            StartCoroutine(HealthFlash());
+        }
+    }
+
+    private void PlayerOff()
+    {
+        m_DuckChild[m_DuckChild.Length - 1].SetActive(false);
+    }
+
+    public void PlayerOn()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            m_DuckChild[m_DuckChild.Length - 1].SetActive(true);
+        }
     }
 
     private IEnumerator HealthFlash()
