@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6381434850706525704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: P_FenceColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,25 +30,25 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6783520899275504184}
+  - {fileID: 866623519528111827}
+  - {fileID: 4738331295055831064}
+  - {fileID: 2100669036617446555}
+  - {fileID: 1727821395775697234}
   - {fileID: 1032886368912968801}
+  - {fileID: 4604287066587929509}
+  - {fileID: 7889632598887058571}
+  - {fileID: 4674393933113757535}
+  - {fileID: 699073019911805246}
   - {fileID: 8278266137484777500}
   - {fileID: 2979924169444238915}
   - {fileID: 2453537047647278372}
   - {fileID: 6687536888686825481}
   - {fileID: 3181657619762178137}
-  - {fileID: 9092140544524340800}
-  - {fileID: 1727821395775697234}
-  - {fileID: 699073019911805246}
-  - {fileID: 4674393933113757535}
-  - {fileID: 2100669036617446555}
-  - {fileID: 8878313803009689248}
-  - {fileID: 6803737578404193742}
-  - {fileID: 4738331295055831064}
-  - {fileID: 7889632598887058571}
-  - {fileID: 6112357438500263461}
-  - {fileID: 866623519528111827}
-  - {fileID: 4604287066587929509}
   - {fileID: 6202893124325747610}
+  - {fileID: 6803737578404193742}
+  - {fileID: 8878313803009689248}
+  - {fileID: 6112357438500263461}
+  - {fileID: 9092140544524340800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &711346448227888010
@@ -105,7 +105,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (2)
+      value: FenceColliders 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -139,8 +143,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.08595305, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: -0.002613342, y: -0.0000000010936002, z: 3.63182e-18}
 --- !u!4 &1032886368912968801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -200,7 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (5)
+      value: FenceColliders 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -234,8 +242,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.063218065, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: 0.00058488373, y: -4.5002924e-10, z: 0}
 --- !u!4 &866623519528111827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -295,7 +303,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (19)
+      value: FenceColliders 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -329,8 +341,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.051742118, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: 0.00007921577, y: -1.9810165e-13, z: -1.895803e-19}
 --- !u!4 &699073019911805246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -390,7 +402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (17)
+      value: FenceColliders 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -429,8 +445,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.057243746, y: 0.0028843682, z: 0.058844913}
+  m_Center: {x: 0.0019348956, y: 6.5606115e-10, z: 0}
 --- !u!1001 &1922379698701325168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -485,7 +501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (13)
+      value: FenceColliders 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -519,8 +539,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.06290051, y: 0.002884368, z: 0.058844913}
+  m_Center: {x: -0.0038858915, y: 3.5809165e-11, z: 0}
 --- !u!4 &2100669036617446555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -580,7 +600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (8)
+      value: FenceColliders 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -619,8 +643,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.058092155, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: 0.0009099519, y: -3.6551543e-12, z: 0}
 --- !u!1001 &3147239618041843634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -675,7 +699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (16)
+      value: FenceColliders 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -709,8 +737,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05200547, y: 0.0028843682, z: 0.058844913}
+  m_Center: {x: 0.0032797256, y: 1.633231e-10, z: 0}
 --- !u!4 &3181657619762178137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -770,7 +798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (4)
+      value: FenceColliders 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -804,8 +836,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.054511856, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: 0.0012204362, y: -7.676117e-10, z: 0}
 --- !u!4 &2979924169444238915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -865,7 +897,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (7)
+      value: FenceColliders 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -899,8 +935,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.07307149, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: -0.0025446296, y: 1.3663515e-10, z: -1.7151706e-18}
 --- !u!4 &4604287066587929509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -960,7 +996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (9)
+      value: FenceColliders 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -999,8 +1039,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.056308784, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: -0.002097652, y: -8.687846e-12, z: 0}
 --- !u!1001 &5139858390570363060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1055,7 +1095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (14)
+      value: FenceColliders 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1094,8 +1138,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05596542, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: 0.0017126871, y: 1.0246912e-12, z: 4.277077e-18}
 --- !u!1001 &5881598944019696753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1150,7 +1194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (3)
+      value: FenceColliders 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1189,8 +1237,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.061385177, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: 0.0002492857, y: -4.4914855e-10, z: -3.135905e-19}
 --- !u!1001 &6006057844883534286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,7 +1293,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (6)
+      value: FenceColliders 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1284,8 +1336,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.060250416, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: 0.0010617053, y: 2.9061567e-10, z: -7.8300503e-19}
 --- !u!1001 &6460784391092985299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1342,6 +1394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FenceColliders 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1374,8 +1430,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05497271, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: 0.00000040650366, y: -1.4902246e-10, z: 3.0329175e-22}
 --- !u!4 &6783520899275504184 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -1435,7 +1491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (10)
+      value: FenceColliders 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1469,8 +1529,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.06074165, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: -0.00064584374, y: 1.2268164e-12, z: 6.725597e-20}
 --- !u!4 &6803737578404193742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -1530,7 +1590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (12)
+      value: FenceColliders 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1564,8 +1628,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.06911111, y: 0.002884368, z: 0.058844913}
+  m_Center: {x: 0.001968292, y: 7.1982353e-10, z: 0}
 --- !u!4 &6687536888686825481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -1625,7 +1689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (11)
+      value: FenceColliders 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1659,8 +1727,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05972781, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: 0.0035802757, y: -1.8605378e-10, z: 1.8294584e-19}
 --- !u!4 &7889632598887058571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -1720,7 +1788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (1)
+      value: FenceColliders 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1759,8 +1831,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05305296, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: -0.0018056857, y: 2.2427957e-10, z: 1.8849047e-18}
 --- !u!1001 &8766112476836243883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1815,7 +1887,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (18)
+      value: FenceColliders 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1849,8 +1925,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.05566167, y: 0.0028843689, z: 0.058844913}
+  m_Center: {x: 0.001180445, y: 2.5541213e-11, z: 2.7911971e-18}
 --- !u!4 &9092140544524340800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
@@ -1910,7 +1986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
       propertyPath: m_Name
-      value: FenceColliders 1 (15)
+      value: FenceColliders 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1944,8 +2024,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.045446012, y: 0.0028843684, z: 0.058844913}
-  m_Center: {x: 0, y: 0, z: 9.313224e-10}
+  m_Size: {x: 0.056049984, y: 0.0028843684, z: 0.058844913}
+  m_Center: {x: -0.00038170815, y: -5.963313e-14, z: -6.178756e-19}
 --- !u!4 &8878313803009689248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c8268f4d9ff1ceb42ab36912c453423e, type: 3}
