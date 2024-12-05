@@ -34,12 +34,15 @@ public class Spawnerscript : MonoBehaviour
                 m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
             }
         }*/
-        if (m_playerInputManager.maxPlayerCount == 4)
+        if(!GameManager.Instance.m_playersSpawned)
         {
-            if (m_index != 3)
+            if (m_playerInputManager.maxPlayerCount == 4)
             {
-                m_index += 1;
-                m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
+                if (m_index != 3)
+                {
+                    m_index += 1;
+                    m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
+                }
             }
         }
     }
