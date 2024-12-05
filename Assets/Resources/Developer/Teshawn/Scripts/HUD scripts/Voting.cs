@@ -58,6 +58,7 @@ public class Voting : MonoBehaviour
 
     public void CheckingGameMode()
     {
+        GameManager.Instance.m_miniGamesPlayed++;
         switch (m_ports[0].m_gameModes)
         {
             case GameModes.Survival:

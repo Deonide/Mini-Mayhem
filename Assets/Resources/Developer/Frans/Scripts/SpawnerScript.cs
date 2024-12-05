@@ -38,7 +38,6 @@ public class Spawnerscript : MonoBehaviour
         {
             if (m_index != 3)
             {
-               //GameManager.Instance.CountAmountOfPlayers();
                 m_index += 1;
                 m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
             }
@@ -53,4 +52,5 @@ public class Spawnerscript : MonoBehaviour
             m_playerCharacters[i].transform.position = new Vector3(m_playerSpawners[i].transform.position.x, m_playerSpawners[i].transform.position.y, m_playerSpawners[i].transform.position.z);
         }
     }
+
 }

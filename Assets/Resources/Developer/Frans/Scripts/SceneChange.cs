@@ -10,6 +10,11 @@ public class SceneChange : MonoBehaviour
         SceneManager.LoadScene("PlayerHub");
     }
 
+    public void GoToMainMenu()
+    {
+        GameManager.Instance.ClearLists();
+        SceneManager.LoadScene("Main Menu");
+    }
     public void QuitGame()
     {
         Application.Quit();
