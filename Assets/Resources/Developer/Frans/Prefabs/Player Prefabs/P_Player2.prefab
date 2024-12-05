@@ -282,7 +282,8 @@ MonoBehaviour:
   - {fileID: 1599153033939017771}
   - {fileID: 4065098562719251222}
   - {fileID: 470728624814168625}
-  m_health: 3
+  m_playerID: 0
+  m_health: 1
   m_playerOut: 0
   m_portals: {fileID: 0}
   m_voteCount: 1

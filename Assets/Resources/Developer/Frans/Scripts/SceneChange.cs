@@ -13,6 +13,7 @@ public class SceneChange : MonoBehaviour
     public void GoToMainMenu()
     {
         GameManager.Instance.ClearLists();
+        Destroy(GameManager.Instance);
         SceneManager.LoadScene("Main Menu");
     }
     public void QuitGame()

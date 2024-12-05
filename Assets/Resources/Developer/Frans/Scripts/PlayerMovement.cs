@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject[] m_DuckChild;
 
-    public int m_score;
+    [SerializeField]
+    public int m_playerID;
     public int m_health = 3;
     public bool m_playerOut;
 

@@ -408,6 +408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d164203252e268247b6d7818fdb01466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &257757994 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5981426105387924570, guid: 45c61aa2f291c5a4485d0e5177486b16, type: 3}
+  m_PrefabInstance: {fileID: 1579829264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &377614241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -481,6 +486,10 @@ PrefabInstance:
     - target: {fileID: 5786231924384715310, guid: bb53e9a4afcbe2a4cb89ea71f20e0a36, type: 3}
       propertyPath: m_Name
       value: Mini game portals
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928960285414493924, guid: bb53e9a4afcbe2a4cb89ea71f20e0a36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7560632644703142593, guid: bb53e9a4afcbe2a4cb89ea71f20e0a36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -690,10 +699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd82be08e0cc92746a265bb6805a6658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_chooseMiniGame: 0
-  m_scene:
-    m_Handle: 0
-  m_index: 0
   m_ListPlayerUI:
   - {fileID: 419236176}
   - {fileID: 840799665}
@@ -704,25 +709,20 @@ MonoBehaviour:
   - {fileID: 846224253}
   - {fileID: 693307994}
   - {fileID: 2045234047}
-  m_ListScoreTextUI:
-  - {fileID: 481514919}
-  - {fileID: 19512481}
-  - {fileID: 767020879}
-  - {fileID: 1690113541}
   m_playerIDS: 
-  m_scoreList: []
-  m_leaderBoardPositions: []
-  m_playerID: 0
-  m_leaderBoardPos: 0
-  m_score: 0
-  m_mainCurrentPlayers: 0
-  m_maxMiniGamePoints: 100
-  m_playersOut: 0
-  m_playerOutToStopGame: 0
-  m_miniGamesPlayed: 0
-  m_isOnePlayerLeft: 0
-  m_outPlayers: 
+  m_playerIDForList: 0
   m_playerInputManager: {fileID: 1458561842}
+  m_index: 0
+  m_scene:
+    m_Handle: 0
+  m_outPlayers: 
+  m_isOnePlayerLeft: 0
+  m_playersOut: 0
+  m_mainCurrentPlayers: 0
+  m_playerOutToStopGame: 0
+  m_winningPlayer: 0
+  m_playersSpawned: 0
+  m_ScoreCanvas: {fileID: 257757994}
 --- !u!4 &503673605
 Transform:
   m_ObjectHideFlags: 0
@@ -1413,6 +1413,10 @@ PrefabInstance:
     - target: {fileID: 3518332331809324220, guid: 45c61aa2f291c5a4485d0e5177486b16, type: 3}
       propertyPath: m_Name
       value: Portal Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506099866715000242, guid: 45c61aa2f291c5a4485d0e5177486b16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4631110128790060899, guid: 45c61aa2f291c5a4485d0e5177486b16, type: 3}
       propertyPath: m_LocalPosition.x
