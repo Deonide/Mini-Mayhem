@@ -21,10 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject[] m_DuckChild;
 
-    [SerializeField]
-    private int m_health = 3;
-
-    private bool m_playerOut;
+    public int m_score;
+    public int m_health = 3;
+    public bool m_playerOut;
 
     //<-- Movement -->
     private UnityEngine.Vector2 m_movementInput = UnityEngine.Vector2.zero;
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_playerSpeed = 20f;
     private float m_rotationSpeed = 50f;
     //<- End Movement ->
+
 
     //Rigidbody
     Rigidbody m_rb;
@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         m_rb = gameObject.GetComponent<Rigidbody>();
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
+        DontDestroyOnLoad(gameObject);
     }
 
     #region Input
@@ -132,13 +133,12 @@ public class PlayerMovement : MonoBehaviour
     {
         //Als de speler colission heeft met een object dat de Portal tag heeft en de speler nog kan stemmen dan stemt de speler op een van de portals.
         //En neemt de hoeveelheid stemmen dat de speler heeft af.
-        DontDestroyOnLoad(this.gameObject);
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_voting.g_totalVotes++;
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+            m_voteCount--;
         }
-        m_voteCount--;
     }
 
     #region Jump
@@ -227,26 +227,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Reusable functions
-    //De spelers health variabel neemt af met 1.
-    public void TakeDamage()
-    {
-        m_health--;
-        Debug.Log("received damage");
-        //Als de speler geen health meer over heeft gaat die dood.
-        if (m_health == 0)
-        {
-            m_playerOut = true;
-            PlayerOff();
-            GameManager.Instance.PlayerEliminated();
-        }
-
-        else if(m_health > 0)
-        {
-            StartCoroutine(HealthFlash());
-        }
-    }
-
-    private void PlayerOff()
+    public void PlayerOff()
     {
         m_DuckChild[m_DuckChild.Length - 1].SetActive(false);
     }
@@ -256,6 +237,23 @@ public class PlayerMovement : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             m_DuckChild[m_DuckChild.Length - 1].SetActive(true);
+        }
+        m_playerOut = false;
+    }
+
+    //De spelers health variabel neemt af met 1.
+    public void TakeDamage()
+    {
+        m_health--;
+        //Als de speler geen health meer over heeft gaat die dood.
+        if (m_health == 0)
+        {
+            GameManager.Instance.PlayerEliminated();
+        }
+
+        else if(m_health > 0)
+        {
+            StartCoroutine(HealthFlash());
         }
     }
 
