@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     public float m_score;
     #endregion
 
-
+    public bool m_playersSpawned;
     private PlayerMovement[] m_allP_Movement; // (K) Temporary Variable used for counting players.
     public int m_mainCurrentPlayers = 0;
     public float m_maxMiniGamePoints = 100; // (K) This is 1st players reward.
@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     {
         m_playerInputManager.onPlayerJoined += CountAmountOfPlayers;
         UIDown();
+        m_playersSpawned = false;
     }
 
     #region Spawning
@@ -100,7 +101,6 @@ public class GameManager : Singleton<GameManager>
             Destroy(player.gameObject);
         }
     }
-
 
     public void UIDown()
     {
@@ -194,6 +194,7 @@ public class GameManager : Singleton<GameManager>
             {
                 if (m_allP_Movement[t].m_playerOut == false)
                 {
+                    Debug.Log(m_allP_Movement[t]);
                     GrantMaxPoints(t);
                     Winner();
                 }
@@ -215,6 +216,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
+            m_playersSpawned = true;
             SceneManager.LoadScene("PlayerHub");
         }
     }
