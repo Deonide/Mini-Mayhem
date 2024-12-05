@@ -14,7 +14,8 @@ public class Voting : MonoBehaviour
     private int m_additionalVote;
     [SerializeField]
     private bool m_hasVoted;
-    private float m_voteTimer = 5f;
+
+    private float m_voteTimer = 3f;
 
     public int g_totalVotes;
 
@@ -57,6 +58,7 @@ public class Voting : MonoBehaviour
 
     public void CheckingGameMode()
     {
+        GameManager.Instance.m_miniGamesPlayed++;
         switch (m_ports[0].m_gameModes)
         {
             case GameModes.Survival:

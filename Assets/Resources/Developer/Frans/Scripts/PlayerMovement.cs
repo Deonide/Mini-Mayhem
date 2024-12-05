@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
+using System.Linq;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -15,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     #region Variables
     #region Universal Variables
     [SerializeField] 
-    public int whichPlayer = 0;
-    [SerializeField]
-    private GameObject m_DuckChild;
+    public int m_whichPlayer = 0;
 
     [SerializeField]
-    private int m_health = 3;
+    private GameObject[] m_DuckChild;
+
+    public int m_score;
+    public int m_health = 3;
+    public bool m_playerOut;
 
     //<-- Movement -->
     private UnityEngine.Vector2 m_movementInput = UnityEngine.Vector2.zero;
@@ -29,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private float m_rotationSpeed = 50f;
     //<- End Movement ->
 
+
     //Rigidbody
-    Rigidbody rb;
+    Rigidbody m_rb;
     #endregion
     #region Voting
     [CanBeNull]
@@ -51,39 +55,32 @@ public class PlayerMovement : MonoBehaviour
     private int m_maxBombs = 1, m_bombsRemaining = 1;
     private float m_bombTimer, m_maxBombTimer = 2f;
     #endregion
-    #region BumperDuck
-    [SerializeField]
-    private GameObject m_bumperDuck;
-    [SerializeField]
-    private bool m_bumperSpawned;
-    #endregion
     #endregion
 
     void Start()
     {
         m_voting = FindObjectOfType<Voting>();
-        rb = gameObject.GetComponent<Rigidbody>();
-        m_bumperDuck.SetActive(false);
+        m_rb = gameObject.GetComponent<Rigidbody>();
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
+        DontDestroyOnLoad(gameObject);
     }
 
     #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
-            Debug.Log(GameManager.Instance.m_chooseMiniGame);
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
             {
                 QTEmanager qTEmanager = FindAnyObjectByType<QTEmanager>();
 
                 UnityEngine.Vector2 currentMove = context.ReadValue<UnityEngine.Vector2>();
-                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[whichPlayer] = 0; //Input Up
-                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[whichPlayer] = 1; //Input Down
-                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[whichPlayer] = 2; //Input Left
-                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[whichPlayer] = 3; //Input Right
+                if (currentMove == new UnityEngine.Vector2(0, 1)) qTEmanager.playerChosenInput[m_whichPlayer] = 0; //Input Up
+                else if (currentMove == new UnityEngine.Vector2(0, -1)) qTEmanager.playerChosenInput[m_whichPlayer] = 1; //Input Down
+                else if (currentMove == new UnityEngine.Vector2(-1, 0)) qTEmanager.playerChosenInput[m_whichPlayer] = 2; //Input Left
+                else if (currentMove == new UnityEngine.Vector2(1, 0)) qTEmanager.playerChosenInput[m_whichPlayer] = 3; //Input Right
             }
             else
             {
@@ -100,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (context.performed)
+        else if (context.performed && !m_playerOut)
         {
             m_rotateDirection = context.ReadValue<float>();
         }
@@ -112,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 1)
@@ -122,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
             else if (GameManager.Instance.m_index == 2)
             {
-                if(GameManager.Instance.m_chooseMiniGame == 0 && m_bombsRemaining > 0)
+                if(m_bombsRemaining > 0)
                 {
                     SpawnBomb.SpawningBombs(m_bomb, m_bombSpawnPoint.transform.position);
                     m_bombsRemaining--;
@@ -136,13 +133,12 @@ public class PlayerMovement : MonoBehaviour
     {
         //Als de speler colission heeft met een object dat de Portal tag heeft en de speler nog kan stemmen dan stemt de speler op een van de portals.
         //En neemt de hoeveelheid stemmen dat de speler heeft af.
-        m_voting.g_totalVotes++;
-        DontDestroyOnLoad(this.gameObject);
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
+            m_voting.g_totalVotes++;
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+            m_voteCount--;
         }
-        m_voteCount--;
     }
 
     #region Jump
@@ -200,19 +196,13 @@ public class PlayerMovement : MonoBehaviour
                 m_bombsRemaining++;
             }
         }
-
-        if (GameManager.Instance.m_index == 2 && GameManager.Instance.m_chooseMiniGame == 1 && !m_bumperSpawned)
-        {
-            m_bumperDuck.SetActive(true);
-            m_bumperSpawned = true;
-        }
     }
 
     private void PlayerMove()
     {
         UnityEngine.Vector3 move = new UnityEngine.Vector3(m_movementInput.x, 0, m_movementInput.y).normalized * m_playerSpeed;
-        UnityEngine.Vector3 newPosition = rb.position + move * Time.fixedDeltaTime;
-        rb.MovePosition(newPosition);
+        UnityEngine.Vector3 newPosition = m_rb.position + move * Time.fixedDeltaTime;
+        m_rb.MovePosition(newPosition);
         transform.Rotate(UnityEngine.Vector3.up * Time.deltaTime * m_rotationSpeed * m_rotateDirection);
     }
 
@@ -237,26 +227,43 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Reusable functions
+    public void PlayerOff()
+    {
+        m_DuckChild[m_DuckChild.Length - 1].SetActive(false);
+    }
+
+    public void PlayerOn()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            m_DuckChild[m_DuckChild.Length - 1].SetActive(true);
+        }
+        m_playerOut = false;
+    }
+
     //De spelers health variabel neemt af met 1.
     public void TakeDamage()
     {
         m_health--;
-
         //Als de speler geen health meer over heeft gaat die dood.
         if (m_health == 0)
         {
-            Destroy(gameObject);
+            GameManager.Instance.PlayerEliminated();
         }
-        StartCoroutine(HealthFlash());
+
+        else if(m_health > 0)
+        {
+            StartCoroutine(HealthFlash());
+        }
     }
 
     private IEnumerator HealthFlash()
     {
         for (int i = 0; i < 10; i++)
         {
-            m_DuckChild.SetActive(false);
+            m_DuckChild[m_DuckChild.Length -1].SetActive(false);
             yield return new WaitForSeconds(0.1f);
-            m_DuckChild.SetActive(true);
+            m_DuckChild[m_DuckChild.Length -1].SetActive(true);
             yield return new WaitForSeconds(0.1f);
         }
     }

@@ -76,6 +76,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6001475304377431773}
+        m_TargetAssemblyTypeName: Spawnerscript, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -119,8 +131,8 @@ MonoBehaviour:
   - {fileID: 5908807754793965207, guid: 528d947e244fcf3408a0782a2bb5eb3a, type: 3}
   - {fileID: 6266022675444365353, guid: dcacfb8514cb31843b314d3064a4bcde, type: 3}
   m_playerCharacters:
-  - {fileID: 4064376734825594542, guid: 8c7da8be44640bf46ae9fbbf88721adc, type: 3}
-  - {fileID: 2383885688338841671, guid: f46ecdbaee2a63a4396bb91ef41e8f8e, type: 3}
-  - {fileID: 2100320980982284030, guid: e65813b36b9b15e4b94c69cd970a8350, type: 3}
-  - {fileID: 858288028178956721, guid: 471e91f687c55604e98cb2f5d0788216, type: 3}
+  - {fileID: 7189404413913240041, guid: 3d4cb5d1f1f42d54b8402a7422114892, type: 3}
+  - {fileID: 7189404413913240041, guid: 754743981ef1bfb42ace6f2f9743ba71, type: 3}
+  - {fileID: 7189404413913240041, guid: 615676a37bec0ec49925c5f9bc65157b, type: 3}
+  - {fileID: 7189404413913240041, guid: 14ca59192ee8be144a5bda52a8f8f157, type: 3}
   m_index: 0

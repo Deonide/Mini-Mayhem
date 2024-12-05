@@ -10,8 +10,8 @@ public class Spawnerscript : MonoBehaviour
     private List<GameObject> m_playerSpawners = new List<GameObject>();
     [SerializeField] 
     private List<GameObject> m_playerCharacters = new List<GameObject>();
-    [SerializeField]
-    private int m_index = 0;
+
+    public int m_index = 0;
 
     private PlayerInputManager m_playerInputManager;
 
@@ -25,15 +25,16 @@ public class Spawnerscript : MonoBehaviour
     {
         //Elke keer dat de er een speler inspawned telt de index 1tje op en word de prefab die de input manager moet spawnen verandert.
         //De max aantal spelers word bepaald in de inputmanager
-        if (m_playerInputManager.maxPlayerCount == 2)
+/*        if (m_playerInputManager.maxPlayerCount == 2)
         {
             if (m_index != 1)
             {
+                GameManager.Instance.CountAmountOfPlayers();
                 m_index += 1;
                 m_playerInputManager.playerPrefab = m_playerCharacters[m_index];
             }
-        }
-        else if (m_playerInputManager.maxPlayerCount == 4)
+        }*/
+        if (m_playerInputManager.maxPlayerCount == 4)
         {
             if (m_index != 3)
             {
