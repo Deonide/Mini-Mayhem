@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714036899140647417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BombSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,10 +83,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7274615501834709717, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -5373442534587987241, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5275c24ba53a1c74f948bc143e92696c, type: 2}
+    - target: {fileID: -5142858944495972243, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -3771993903449941626, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -95,9 +103,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5275c24ba53a1c74f948bc143e92696c, type: 2}
+    - target: {fileID: -489245432823821165, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 205768359663447892, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
       propertyPath: m_Name
       value: P_Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2296243564343416020, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -115,6 +139,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5275c24ba53a1c74f948bc143e92696c, type: 2}
+    - target: {fileID: 6300163634248374190, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605684598416717449, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784903757802869550, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318216000769986578, guid: f26ca54a2d2918f4381537334510ca2c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -242,7 +282,9 @@ MonoBehaviour:
   - {fileID: 1599153033939017771}
   - {fileID: 4065098562719251222}
   - {fileID: 470728624814168625}
-  m_health: 3
+  m_playerID: 0
+  m_health: 1
+  m_playerOut: 0
   m_portals: {fileID: 0}
   m_voteCount: 1
   m_bomb: {fileID: 749866245235577485, guid: 1ca4572265d644746a97cbfd62af9030, type: 3}

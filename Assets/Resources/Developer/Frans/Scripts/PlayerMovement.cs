@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private GameObject[] m_DuckChild;
 
     [SerializeField]
-    private int m_health = 3;
+    public int m_playerID;
+    public int m_health = 3;
+    public bool m_playerOut;
 
     //<-- Movement -->
     private UnityEngine.Vector2 m_movementInput = UnityEngine.Vector2.zero;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_playerSpeed = 20f;
     private float m_rotationSpeed = 50f;
     //<- End Movement ->
+
 
     //Rigidbody
     Rigidbody m_rb;
@@ -61,12 +64,13 @@ public class PlayerMovement : MonoBehaviour
         m_rb = gameObject.GetComponent<Rigidbody>();
         m_bombsRemaining = m_maxBombs;
         m_bombTimer = m_maxBombTimer;
+        DontDestroyOnLoad(gameObject);
     }
 
     #region Input
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 3) // (K) als de scene op QTE game is dan word movement weggehaalt
@@ -94,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        else if (context.performed)
+        else if (context.performed && !m_playerOut)
         {
             m_rotateDirection = context.ReadValue<float>();
         }
@@ -106,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !m_playerOut)
         {
             GameManager.Instance.CheckScene();
             if (GameManager.Instance.m_index == 1)
@@ -130,13 +134,12 @@ public class PlayerMovement : MonoBehaviour
     {
         //Als de speler colission heeft met een object dat de Portal tag heeft en de speler nog kan stemmen dan stemt de speler op een van de portals.
         //En neemt de hoeveelheid stemmen dat de speler heeft af.
-        DontDestroyOnLoad(this.gameObject);
         if (m_portals != null && m_voteCount == 1 && m_canVote)
         {
             m_voting.g_totalVotes++;
             m_portals.GetComponent<Portals>().m_AmountOfVotes++;
+            m_voteCount--;
         }
-        m_voteCount--;
     }
 
     #region Jump
@@ -225,17 +228,34 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Reusable functions
+    public void PlayerOff()
+    {
+        m_DuckChild[m_DuckChild.Length - 1].SetActive(false);
+    }
+
+    public void PlayerOn()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            m_DuckChild[m_DuckChild.Length - 1].SetActive(true);
+        }
+        m_playerOut = false;
+    }
+
     //De spelers health variabel neemt af met 1.
     public void TakeDamage()
     {
         m_health--;
-        Debug.Log("received damage");
         //Als de speler geen health meer over heeft gaat die dood.
         if (m_health == 0)
         {
-            Destroy(gameObject);
+            GameManager.Instance.PlayerEliminated();
         }
-        StartCoroutine(HealthFlash());
+
+        else if(m_health > 0)
+        {
+            StartCoroutine(HealthFlash());
+        }
     }
 
     private IEnumerator HealthFlash()
